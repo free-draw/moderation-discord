@@ -1,5 +1,5 @@
 import Bot from "./Bot"
-import logger from "./Logger"
+import logger from "./logger"
 
 async function init(): Promise<Bot> {
 	const bot: Bot = new Bot({
