@@ -1,0 +1,27 @@
+{
+  "name": "moderation-discord",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "license": "AGPL-3.0",
+  "scripts": {
+    "start": "ts-node ."
+  },
+  "dependencies": {
+    "@discordjs/builders": "^0.6.0",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.23.1",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "make-promises-safe": "^5.1.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/node": "^16.10.1",
+    "ts-node": "^10.2.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3"
+  },
+  "author": "",
+  "description": ""
+}
