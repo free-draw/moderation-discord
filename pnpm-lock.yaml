@@ -3,7 +3,6 @@ lockfileVersion: 5.3
 specifiers:
   '@discordjs/builders': ^0.6.0
   '@discordjs/rest': ^0.1.0-canary.0
-  '@tsconfig/node16': ^1.0.2
   '@types/node': ^16.10.1
   discord-api-types: ^0.23.1
   discord.js: ^13.1.0
@@ -24,7 +23,6 @@ dependencies:
   winston: 3.3.3
 
 devDependencies:
-  '@tsconfig/node16': 1.0.2
   '@types/node': 16.10.1
   ts-node: 10.2.1_e0bf20b7c5ed5b194f21284475beb32f
   tslib: 2.3.1
