@@ -48,7 +48,7 @@ class Bot {
 		let files = await fs.readdir(path.resolve(__dirname, "commands"))
 		files = files.filter(file => file.endsWith(".ts"))
 
-		const data: Array<Object> = []
+		const data: Object[] = []
 
 		for (const file of files) {
 			const command: ICommand = (await import(`./commands/${file}`)).default
