@@ -5,11 +5,13 @@ import { REST } from "@discordjs/rest"
 import { Client, Collection, CommandInteraction, Guild } from "discord.js"
 import { Routes } from "discord-api-types/v9"
 import logger from "./util/logger"
+import Resolver from "./Resolver"
 
 class Bot {
 	public client: Client
-	public commands: Collection<string, ICommand>
+	public commands: Collection<string, ICommand> = new Collection()
 	public guild: Guild | undefined
+	public resolver: Resolver
 
 	public clientId: string
 	public guildId: string
@@ -25,7 +27,7 @@ class Bot {
 			intents: [],
 		})
 
-		this.commands = new Collection()
+		this.resolver = new Resolver(this.client)
 	}
 
 	public async login(token: string | undefined) {
@@ -33,10 +35,13 @@ class Bot {
 		this.setupListeners()
 		await this.setupGuild()
 		await this.setupCommands()
+		await this.resolver.resolve(this.guild as Guild)
 	}
 
 	private async setupGuild() {
 		this.guild = await this.client.guilds.fetch(this.guildId)
+		
+		logger.debug("Resolved guild")
 	}
 
 	private async setupCommands() {
@@ -56,6 +61,8 @@ class Bot {
 			Routes.applicationGuildCommands(this.clientId, this.guildId),
 			{ body: data }
 		)
+
+		logger.debug("Set up commands")
 	}
 
 	private setupListeners() {
@@ -71,6 +78,8 @@ class Bot {
 
 					command.execute(interaction)
 				} else {
+					logger.warn(`Unknown command name: ${name}`)
+
 					await interaction.reply({
 						content: `**Internal Error**: Failed to find command \`${name}\` in collection`,
 						ephemeral: true,
@@ -78,6 +87,8 @@ class Bot {
 				}
 			}
 		})
+
+		logger.debug("Set up listeners")
 	}
 }
 
