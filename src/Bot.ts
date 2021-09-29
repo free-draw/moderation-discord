@@ -4,7 +4,7 @@ import ICommand from "./interface/ICommand"
 import { REST } from "@discordjs/rest"
 import { Client, Collection, CommandInteraction, Guild } from "discord.js"
 import { Routes } from "discord-api-types/v9"
-import logger from "./logger"
+import logger from "./util/logger"
 
 class Bot {
 	public client: Client
