@@ -72,11 +72,7 @@ class Bot {
 				const command = this.commands.get(name)
 
 				if (command) {
-					if (command.defer) {
-						await interaction.deferReply()
-					}
-
-					command.execute(interaction)
+					await command.execute(interaction)
 				} else {
 					logger.warn(`Unknown command name: ${name}`)
 

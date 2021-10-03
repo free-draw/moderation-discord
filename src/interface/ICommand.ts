@@ -3,7 +3,6 @@ import { CommandInteraction } from "discord.js"
 
 interface ICommand {
 	name: string,
-	defer: boolean,
 	build(): SlashCommandBuilder,
 	execute(interaction: CommandInteraction): Promise<void> | void,
 }

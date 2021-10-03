@@ -4,7 +4,6 @@ import ICommand from "../interface/ICommand"
 
 class TestCommand implements ICommand {
 	public name: string = "test"
-	public defer: boolean = false
 
 	public build(): SlashCommandBuilder {
 		return new SlashCommandBuilder()
@@ -13,8 +12,9 @@ class TestCommand implements ICommand {
 	}
 
 	public async execute(interaction: CommandInteraction) {
-		interaction.reply({
-			content: "Hello world!",
+		await interaction.reply({
+			content: "hello world!",
+			ephemeral: true,
 		})
 	}
 }
