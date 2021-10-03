@@ -1,10 +1,8 @@
 import API from "../../API"
 import Resource from "../../Resource"
+import RobloxUser from "../../type/RobloxUser"
 
-type RobloxUser = {
-	id: number,
-	name: string,
-	displayName: string,
+type RequestedRobloxUser = RobloxUser & {
 	requestedUsername: string,
 }
 
@@ -14,7 +12,7 @@ type GetRobloxUsernamesRequest = {
 }
 
 type GetRobloxUsernamesResponse = {
-	data: RobloxUser[],
+	data: RequestedRobloxUser[],
 }
 
 const RobloxUsernameResource = new Resource<string, RobloxUser, API>(async (requestedUsernames, api) => {
@@ -27,7 +25,7 @@ const RobloxUsernameResource = new Resource<string, RobloxUser, API>(async (requ
 	})
 	const data = response.data as GetRobloxUsernamesResponse
 
-	const users = {} as { [key: string]: RobloxUser }
+	const users = {} as { [key: string]: RequestedRobloxUser }
 	for (const user of data.data) {
 		users[user.requestedUsername] = user
 	}

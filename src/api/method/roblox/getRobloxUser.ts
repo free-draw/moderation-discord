@@ -1,11 +1,6 @@
 import API from "../../API"
 import Resource from "../../Resource"
-
-type RobloxUser = {
-	id: number,
-	name: string,
-	displayName: string,
-}
+import RobloxUser from "../../type/RobloxUser"
 
 type GetRobloxUsersRequest = {
 	userIds: number[],
