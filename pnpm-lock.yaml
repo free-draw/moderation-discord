@@ -5,6 +5,7 @@ specifiers:
   '@discordjs/rest': ^0.1.0-canary.0
   '@types/node': ^16.10.1
   '@types/yargs': ^17.0.3
+  app-root-path: ^3.0.0
   axios: ^0.21.4
   discord-api-types: ^0.23.1
   discord.js: ^13.1.0
@@ -20,6 +21,7 @@ dependencies:
   '@discordjs/builders': 0.6.0
   '@discordjs/rest': 0.1.0-canary.0
   '@types/yargs': 17.0.3
+  app-root-path: 3.0.0
   axios: 0.21.4
   discord-api-types: 0.23.1
   discord.js: 13.1.0
@@ -142,6 +144,10 @@ packages:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
     dev: true
 
+  /@types/app-root-path/1.2.4:
+    resolution: {integrity: sha1-p4twMoKzKsVN52j1US7MNWmRncc=}
+    dev: false
+
   /@types/node/16.10.1:
     resolution: {integrity: sha512-4/Z9DMPKFexZj/Gn3LylFgamNKHm4K3QDi0gz9B26Uk0c8izYf97B5fxfpspMNkWlFupblKM/nV8+NA9Ffvr+w==}
 
@@ -189,6 +195,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       color-convert: 2.0.1
+    dev: false
+
+  /app-root-path/3.0.0:
+    resolution: {integrity: sha512-qMcx+Gy2UZynHjOHOIXPNvpf+9cjvk3cWrBBK7zg4gH9+clobJRb9NGzcT7mQTcV/6Gm/1WelUtqxVXnNlrwcw==}
+    engines: {node: '>= 6.0.0'}
     dev: false
 
   /arg/4.1.3:

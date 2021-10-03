@@ -1,10 +1,11 @@
 import path from "path"
-import args from "./args"
+import root from "app-root-path"
 
 interface IConfig {
 	channels: { [name: string]: string },
 }
 
-const config = require(path.resolve(process.cwd(), args.config))
+const file = process.env.CONFIG_FILE ?? path.resolve(root.path, "config.json")
+const config = require(file)
 
 export default config as IConfig
