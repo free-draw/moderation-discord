@@ -1,13 +1,12 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { CommandInteraction } from "discord.js"
-import ICommand from "../interface/ICommand"
+import Command from "../interface/Command"
 
-class TestCommand implements ICommand {
-	public name: string = "test"
+class TestCommand implements Command {
+	public name = "test"
 
 	public build(): SlashCommandBuilder {
 		return new SlashCommandBuilder()
-			.setName(this.name)
 			.setDescription("Test command")
 	}
 
