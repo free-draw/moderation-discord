@@ -1,15 +1,49 @@
 import fs from "fs/promises"
 import path from "path"
-import ICommand from "./interface/ICommand"
+import { Command, CommandPermissions } from "./interface/Command"
 import { REST } from "@discordjs/rest"
-import { Client, Collection, CommandInteraction, Guild } from "discord.js"
-import { Routes } from "discord-api-types/v9"
+import { ApplicationCommandPermissionData, Client, Collection, CommandInteraction, Guild } from "discord.js"
+import { Routes, Snowflake } from "discord-api-types/v9"
 import logger from "./util/logger"
 import Resolver from "./Resolver"
 
+type BasicApplicationCommandData = {
+	id: Snowflake,
+	name: string,
+}
+
+function buildPermissions(permissions: CommandPermissions, resolver: Resolver): ApplicationCommandPermissionData[] {
+	const roles = permissions.roles
+	const users = permissions.users
+		
+	const output = [] as ApplicationCommandPermissionData[]
+
+	if (roles) {
+		for (const role in roles) {
+			output.push({
+				id: resolver.getRole(role).id,
+				type: "ROLE",
+				permission: roles[role],
+			})
+		}
+	}
+
+	if (users) {
+		for (const user in users) {
+			output.push({
+				id: user,
+				type: "USER",
+				permission: users[user],
+			})
+		}
+	}
+
+	return output
+}
+
 class Bot {
 	public client: Client
-	public commands: Collection<string, ICommand> = new Collection()
+	public commands: Collection<string, Command> = new Collection()
 	public guild: Guild | undefined
 	public resolver: Resolver
 
@@ -34,8 +68,8 @@ class Bot {
 		await this.client.login(token)
 		this.setupListeners()
 		await this.setupGuild()
-		await this.setupCommands()
 		await this.resolver.resolve(this.guild as Guild)
+		await this.setupCommands()
 	}
 
 	private async setupGuild() {
@@ -48,21 +82,45 @@ class Bot {
 		let files = await fs.readdir(path.resolve(__dirname, "commands"))
 		files = files.filter(file => file.endsWith(".ts"))
 
-		const data: Object[] = []
+		const data = [] as Object[]
 
 		for (const file of files) {
-			const command: ICommand = (await import(`./commands/${file}`)).default
-			data.push(command.build().toJSON())
+			const command = (await import(`./commands/${file}`)).default as Command
+			const builder = command.build()
+			
+			builder.setName(command.name)
+			if (command.permissions) builder.setDefaultPermission(command.permissions.default)
+
+			data.push(builder.toJSON())
 			this.commands.set(command.name, command)
 		}
 
 		const rest = new REST({ version: "9" }).setToken(this.client.token as string)
-		await rest.put(
+
+		const response = await rest.put(
 			Routes.applicationGuildCommands(this.clientId, this.guildId),
 			{ body: data }
+		) as BasicApplicationCommandData[]
+
+		logger.debug("Registered commands")
+
+		await Promise.all(
+			response.map(async (commandData) => {
+				const applicationCommand = await this.guild?.commands.fetch(commandData.id)
+			
+				if (applicationCommand) {
+					const command = this.commands.get(applicationCommand.name)
+					
+					if (command?.permissions) {
+						await applicationCommand.permissions.set({
+							permissions: buildPermissions(command.permissions, this.resolver),
+						})
+					}
+				}
+			})
 		)
 
-		logger.debug("Set up commands")
+		logger.debug("Set up command permissions")
 	}
 
 	private setupListeners() {

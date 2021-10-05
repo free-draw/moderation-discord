@@ -7,7 +7,7 @@ import logger from "./util/logger"
 		guildId: process.env.GUILD_ID as string,
 	})
 
+	logger.info("Logging in...")
 	await bot.login(process.env.TOKEN as string)
-
 	logger.info(`Logged in as ${bot.client.user?.username}`)
 })()
