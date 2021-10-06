@@ -4,7 +4,7 @@ import { Command, CommandPermissions } from "./interface/Command"
 import { REST } from "@discordjs/rest"
 import { ApplicationCommandPermissionData, Client, Collection, CommandInteraction, Guild } from "discord.js"
 import { Routes, Snowflake } from "discord-api-types/v9"
-import logger from "./util/logger"
+import log from "./util/log"
 import Resolver from "./Resolver"
 
 type BasicApplicationCommandData = {
@@ -75,7 +75,7 @@ class Bot {
 	private async setupGuild() {
 		this.guild = await this.client.guilds.fetch(this.guildId)
 		
-		logger.debug("Resolved guild")
+		log.debug("Resolved guild")
 	}
 
 	private async setupCommands() {
@@ -102,7 +102,7 @@ class Bot {
 			{ body: data }
 		) as BasicApplicationCommandData[]
 
-		logger.debug("Registered commands")
+		log.debug("Registered commands")
 
 		await Promise.all(
 			response.map(async (commandData) => {
@@ -120,7 +120,7 @@ class Bot {
 			})
 		)
 
-		logger.debug("Set up command permissions")
+		log.debug("Set up command permissions")
 	}
 
 	private setupListeners() {
@@ -132,7 +132,7 @@ class Bot {
 				if (command) {
 					await command.execute(interaction)
 				} else {
-					logger.warn(`Unknown command name: ${name}`)
+					log.warn(`Unknown command name: ${name}`)
 
 					await interaction.reply({
 						content: `**Internal Error**: Failed to find command \`${name}\` in collection`,
@@ -142,7 +142,7 @@ class Bot {
 			}
 		})
 
-		logger.debug("Set up listeners")
+		log.debug("Set up listeners")
 	}
 }
 

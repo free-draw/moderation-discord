@@ -1,5 +1,5 @@
 import Bot from "./Bot"
-import logger from "./util/logger"
+import log from "./util/log"
 
 (async () => {
 	const bot: Bot = new Bot({
@@ -7,7 +7,7 @@ import logger from "./util/logger"
 		guildId: process.env.GUILD_ID as string,
 	})
 
-	logger.info("Logging in...")
+	log.info("Logging in...")
 	await bot.login(process.env.TOKEN as string)
-	logger.info(`Logged in as ${bot.client.user?.username}`)
+	log.info(`Logged in as ${bot.client.user?.username}`)
 })()
