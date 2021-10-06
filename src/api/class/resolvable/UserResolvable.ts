@@ -3,11 +3,10 @@ import getUser from "../../method/users/getUser"
 import Resolvable from "./Resolvable"
 import User from "../User"
 
-class UserResolvable extends Resolvable<User> {
+class UserResolvable implements Resolvable<User> {
 	public id: number
 
 	constructor(id: number) {
-		super()
 		this.id = id
 	}
 

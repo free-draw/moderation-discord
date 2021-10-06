@@ -4,12 +4,11 @@ import Resolvable from "./Resolvable"
 import User from "../User"
 import UserResolvable from "./UserResolvable"
 
-class ActionResolvable extends Resolvable<Action> {
+class ActionResolvable implements Resolvable<Action> {
 	public user: User | UserResolvable
 	public id: string
 
 	constructor(user: User | UserResolvable, id: string) {
-		super()
 		this.user = user
 		this.id = id
 	}

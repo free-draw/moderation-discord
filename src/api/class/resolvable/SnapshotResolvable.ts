@@ -2,11 +2,10 @@ import API from "../../API"
 import Resolvable from "./Resolvable"
 import Snapshot from "../Snapshot"
 
-class SnapshotResolvable extends Resolvable<Snapshot> {
+class SnapshotResolvable implements Resolvable<Snapshot> {
 	public id: string
 
 	constructor(id: string) {
-		super()
 		this.id = id
 	}
 
