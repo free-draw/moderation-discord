@@ -3,6 +3,7 @@ import Bot from "../Bot"
 import { Collection, GuildChannel, Role } from "discord.js"
 import config from "../util/config"
 import log from "../util/log"
+import Service from "../interface/Service"
 
 type ResolverRoles = Collection<string, Role>
 type ResolverChannels = Collection<string, GuildChannel>
@@ -12,9 +13,7 @@ interface Resolver {
 	on(event: string, listener: () => void): this,
 }
 
-class Resolver extends EventEmitter {
-	public name: string = "resolver"
-
+class Resolver extends EventEmitter implements Service {
 	public bot: Bot
 	public roles: ResolverRoles = new Collection()
 	public channels: ResolverChannels = new Collection()
@@ -45,7 +44,7 @@ class Resolver extends EventEmitter {
 				if (!role) throw new Error(`Unable to find role with id ${id}`)
 
 				this.roles.set(name, role)
-				
+
 				log.debug(`Resolved role "${name}" to ${id} (${role.name})`)
 			})
 		)

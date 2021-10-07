@@ -5,7 +5,7 @@ import { readdir } from "fs/promises"
 import { resolve } from "path"
 import Bot from "../Bot"
 import { Command, CommandPermissions } from "../interface/Command"
-import Resolver from "../Resolver"
+import Service from "../interface/Service"
 import log from "../util/log"
 import { ResolverRoles } from "./Resolver"
 
@@ -58,9 +58,7 @@ function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles)
 	return output
 }
 
-class Commands {
-	public name: string = "commands"
-
+class Commands implements Service {
 	public bot: Bot
 	public commands: Collection<string, Command> = new Collection()
 
