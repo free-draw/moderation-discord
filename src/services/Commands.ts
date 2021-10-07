@@ -69,7 +69,7 @@ class Commands implements Service {
 		this.bot.client.on("interactionCreate", this.onInteraction.bind(this))
 	}
 
-	public async onResolve(roles: ResolverRoles): Promise<void> {
+	private async onResolve(roles: ResolverRoles): Promise<void> {
 		log.debug("Loading commands")
 
 		const commands = await loadCommands()
@@ -117,7 +117,7 @@ class Commands implements Service {
 		)
 	}
 
-	public async onInteraction(interaction: Interaction): Promise<void> {
+	private async onInteraction(interaction: Interaction): Promise<void> {
 		if (interaction.isCommand()) {
 			const name = (interaction as CommandInteraction).commandName
 			const command = this.commands.get(name)
