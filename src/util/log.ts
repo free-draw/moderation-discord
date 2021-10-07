@@ -1,7 +1,7 @@
 import winston from "winston"
 import args from "./args"
 
-const logger = winston.createLogger({
+const log = winston.createLogger({
 	level: args.verbose > 0 ? "debug" : "info",
 	transports: [
 		new winston.transports.Console({
@@ -12,4 +12,4 @@ const logger = winston.createLogger({
 	],
 })
 
-export default logger
+export default log
