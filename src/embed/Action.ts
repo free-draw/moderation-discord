@@ -2,7 +2,7 @@ import { MessageEmbed } from "discord.js"
 import Action from "../api/class/Action"
 import colors from "../util/colors"
 
-function ActionEmbed(action: Action): MessageEmbed {
+async function ActionEmbed(action: Action): Promise<MessageEmbed> {
 	const fields = [
 		{
 			name: "Notes",

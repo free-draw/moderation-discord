@@ -3,7 +3,7 @@ import { CommandInteraction, MessageActionRow, MessageButton, MessageEmbed } fro
 import API from "../API"
 import getRobloxUsername from "../api/method/roblox/getRobloxUsername"
 import getUser from "../api/method/users/getUser"
-import ActionEmbed from "../embed/ActionEmbed"
+import ActionEmbed from "../embed/Action"
 import Command from "../interface/Command"
 import colors from "../util/colors"
 import link from "../util/link"
@@ -50,7 +50,7 @@ class ModerationActionsCommand implements Command {
 		await interaction.editReply({
 			content: `Showing **${Math.min(LIMIT, actions.length)}** of **${actions.length}** actions on Roblox user [${robloxUser.name}](${link.roblox.profile(robloxUser.id)})`,
 
-			embeds: actions.map(ActionEmbed).slice(0, LIMIT),
+			embeds: await Promise.all(actions.map(ActionEmbed).slice(0, LIMIT)),
 
 			components: [
 				new MessageActionRow({
