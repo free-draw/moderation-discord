@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios"
 import API from "../../API"
 import { User, UserData } from "../../class/User"
 
@@ -6,11 +7,10 @@ type GetUserResponse = {
 }
 
 async function getUser(api: API, id: number): Promise<User> {
-	const response = await api.request({
+	const { data } = await api.request({
 		url: `/users/${id}`,
 		method: "GET",
-	})
-	const data = response.data as GetUserResponse
+	}) as AxiosResponse<GetUserResponse>
 
 	return new User(data.user)
 }

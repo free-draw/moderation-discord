@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios"
 import API from "../../API"
 import { User, UserData } from "../../class/User"
 
@@ -8,13 +9,12 @@ type GetUsersBulkResponse = {
 }
 
 async function getUsersBulk(api: API, userIds: number[]): Promise<User[]> {
-	const response = await api.request({
+	const { data } = await api.request({
 		url: "/users",
 		method: "POST",
 		data: userIds as GetUsersBulkRequest,
-	})
-	const data = response.data as GetUsersBulkResponse
-	
+	}) as AxiosResponse<GetUsersBulkResponse>
+
 	return data.users.map((userData) => new User(userData))
 }
 

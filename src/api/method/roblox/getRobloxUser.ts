@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios"
 import API from "../../API"
 import Resource from "../../Resource"
 import RobloxUser from "../../type/RobloxUser"
@@ -12,14 +13,13 @@ type GetRobloxUsersResponse = {
 }
 
 const RobloxUserResource = new Resource<number, RobloxUser, API>(async (requestedUsers, api) => {
-	const response = await api.request({
+	const { data } = await api.request({
 		url: "/roblox/users",
 		method: "POST",
 		data: {
 			userIds: Object.values(requestedUsers),
 		} as GetRobloxUsersRequest,
-	})
-	const data = response.data as GetRobloxUsersResponse
+	}) as AxiosResponse<GetRobloxUsersResponse>
 
 	const users = {} as { [key: string]: RobloxUser }
 	for (const user of data.data) {
