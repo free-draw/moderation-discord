@@ -15,6 +15,7 @@ interface Resolver {
 
 class Resolver extends EventEmitter implements Service {
 	public bot: Bot
+	public resolved: boolean = false
 	public roles: ResolverRoles = new Collection()
 	public channels: ResolverChannels = new Collection()
 
@@ -29,6 +30,7 @@ class Resolver extends EventEmitter implements Service {
 				this.resolveChannels(),
 			])
 
+			this.resolved = true
 			this.emit("resolve", this.roles, this.channels)
 		})
 	}
