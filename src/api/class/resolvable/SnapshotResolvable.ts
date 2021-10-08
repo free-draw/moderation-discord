@@ -9,8 +9,8 @@ class SnapshotResolvable implements Resolvable<Snapshot> {
 		this.id = id
 	}
 
-	public async resolve(api: API) {
-		
+	public async resolve(api: API): Promise<Snapshot | null> {
+
 	}
 }
 

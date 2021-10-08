@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios"
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import { User } from "discord.js"
 import { URL } from "url"
 import { ModeratorAccountData } from "./class/ModeratorAccount"
@@ -16,7 +16,7 @@ class API {
 		this.identity = identity
 	}
 
-	public async request(config: AxiosRequestConfig) {
+	public async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
 		const url = new URL(urljoin(this.url, config.url as string))
 
 		if (this.identity) {
@@ -34,11 +34,11 @@ class API {
 		})
 	}
 
-	public as(identity: ModeratorAccountData) {
+	public as(identity: ModeratorAccountData): API {
 		return new API(this.url, this.token, identity)
 	}
 
-	public asDiscord(user: User) {
+	public asDiscord(user: User): API {
 		return this.as({
 			type: IdentityType.DISCORD,
 			id: user.id,

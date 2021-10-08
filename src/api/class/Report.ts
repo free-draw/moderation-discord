@@ -31,11 +31,11 @@ class Report {
 		this.snapshot = new SnapshotResolvable(data.snapshot)
 	}
 
-	public async accept() {
+	public async accept(): Promise<void> {
 		// TODO
 	}
 
-	public async decline() {
+	public async decline(): Promise<void> {
 		// TODO
 	}
 }

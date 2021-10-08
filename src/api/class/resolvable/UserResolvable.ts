@@ -10,7 +10,7 @@ class UserResolvable implements Resolvable<User> {
 		this.id = id
 	}
 
-	public async resolve(api: API) {
+	public async resolve(api: API): Promise<User | null> {
 		return await getUser(api, this.id)
 	}
 }

@@ -9,7 +9,7 @@ class ReportResolvable implements Resolvable<Report> {
 		this.id = id
 	}
 
-	public async resolve(api: API) {
+	public async resolve(api: API): Promise<Report | null> {
 
 	}
 }

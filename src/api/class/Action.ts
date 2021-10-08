@@ -50,7 +50,7 @@ class Action {
 		this.timestamp = new Date(data.timestamp)
 	}
 
-	public async deactivate() {
+	public async deactivate(): Promise<void> {
 		// TODO
 	}
 }

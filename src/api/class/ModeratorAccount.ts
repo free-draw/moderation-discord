@@ -10,7 +10,7 @@ class ModeratorAccount {
 
 	}
 
-	public async delete() {
+	public async delete(): Promise<void> {
 		// TODO
 	}
 }

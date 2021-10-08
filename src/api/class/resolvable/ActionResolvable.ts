@@ -13,8 +13,8 @@ class ActionResolvable implements Resolvable<Action> {
 		this.id = id
 	}
 
-	public async resolve(api: API) {
-		let user: User
+	public async resolve(api: API): Promise<Action | null> {
+		let user: User | null
 
 		if (this.user instanceof User) {
 			user = this.user
@@ -22,7 +22,7 @@ class ActionResolvable implements Resolvable<Action> {
 			user = await this.user.resolve(api)
 		}
 
-		return user.actions.find(action => this.id === action.id) ?? null
+		return user?.actions.find(action => this.id === action.id) ?? null
 	}
 }
 

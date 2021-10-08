@@ -9,8 +9,8 @@ class ModeratorResolvable implements Resolvable<Moderator> {
 		this.id = id
 	}
 
-	public async resolve(api: API) {
-		
+	public async resolve(api: API): Promise<Moderator | null> {
+
 	}
 }
 
