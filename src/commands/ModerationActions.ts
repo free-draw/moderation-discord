@@ -3,6 +3,7 @@ import { CommandInteraction, MessageActionRow, MessageButton, MessageEmbed } fro
 import API from "../API"
 import getRobloxUsername from "../api/method/roblox/getRobloxUsername"
 import getUser from "../api/method/users/getUser"
+import ActionEmbed from "../embed/ActionEmbed"
 import Command from "../interface/Command"
 import colors from "../util/colors"
 import link from "../util/link"
@@ -49,29 +50,7 @@ class ModerationActionsCommand implements Command {
 		await interaction.editReply({
 			content: `Showing **${Math.min(LIMIT, actions.length)}** of **${actions.length}** actions on Roblox user [${robloxUser.name}](${link.roblox.profile(robloxUser.id)})`,
 
-			embeds: actions.map((action) => {
-				const fields = [
-					{
-						name: "Notes",
-						value: action.notes && action.notes.length > 0 ? action.notes : "*No notes specified*",
-					},
-				] as { name: string, value: string, inline?: boolean }[]
-
-				if (action.expiry) {
-					fields.push({
-						name: "Expiry",
-						value: action.expiry.toString(),
-					})
-				}
-
-				return {
-					title: `${action.type} ${!action.active ? "(inactive)" : ""}`,
-					description: action.reason,
-					fields,
-					timestamp: action.timestamp,
-					color: action.active ? colors.actionActive : colors.actionInactive,
-				}
-			}).slice(0, LIMIT),
+			embeds: actions.map(ActionEmbed).slice(0, LIMIT),
 
 			components: [
 				new MessageActionRow({
