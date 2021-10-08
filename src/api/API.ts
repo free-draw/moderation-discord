@@ -16,7 +16,7 @@ class API {
 		this.identity = identity
 	}
 
-	public async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
+	public async request<T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
 		const url = new URL(urljoin(this.url, config.url as string))
 
 		if (this.identity) {

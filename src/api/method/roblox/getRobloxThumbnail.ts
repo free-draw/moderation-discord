@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios"
 import API from "../../API"
 import RobloxThumbnailType from "../../enum/RobloxThumbnailType"
 import Resource from "../../Resource"
@@ -28,7 +27,7 @@ type GetRobloxThumbnailsResponse = {
 }
 
 const RobloxThumbnailResource = new Resource<RobloxThumbnailOptions, RobloxThumbnail, API>(async (requestedThumbnails, api) => {
-	const { data } = await api.request({
+	const { data } = await api.request<GetRobloxThumbnailsResponse>({
 		method: "POST",
 		url: "/roblox/thumbnails",
 		data: Object.entries(requestedThumbnails).map(([ key, requestedThumbnail ]) => {
@@ -39,7 +38,7 @@ const RobloxThumbnailResource = new Resource<RobloxThumbnailOptions, RobloxThumb
 				size: requestedThumbnail.size,
 			}
 		}) as GetRobloxThumbnailsRequest,
-	}) as AxiosResponse<GetRobloxThumbnailsResponse>
+	})
 
 	const thumbnails = {} as { [key: string]: RobloxThumbnail }
 	for (const thumbnail of data.data) {
