@@ -1,12 +1,13 @@
 import Bot from "./Bot"
+import env from "./util/env"
 import log from "./util/log"
 
 (async () => {
 	const bot: Bot = new Bot({
-		token: process.env.TOKEN as string,
-		clientId: process.env.CLIENT_ID as string,
-		clientSecret: process.env.CLIENT_SECRET as string,
-		guildId: process.env.GUILD_ID as string,
+		token: env.token,
+		clientId: env.clientId,
+		clientSecret: env.clientSecret,
+		guildId: env.guildId,
 	})
 
 	log.info("Logging in...")
