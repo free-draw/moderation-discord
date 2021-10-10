@@ -1,4 +1,5 @@
 import API from "../../API"
+import getReport from "../../method/reports/getReport"
 import Report from "../Report"
 import Resolvable from "./Resolvable"
 
@@ -10,7 +11,7 @@ class ReportResolvable implements Resolvable<Report> {
 	}
 
 	public async resolve(api: API): Promise<Report | null> {
-
+		return getReport(api, this.id)
 	}
 }
 

@@ -1,6 +1,7 @@
 import Resolvable from "./Resolvable"
 import Moderator from "../Moderator"
 import API from "../../API"
+import getModerator from "../../method/moderators/getModerator"
 
 class ModeratorResolvable implements Resolvable<Moderator> {
 	public id: string
@@ -10,7 +11,7 @@ class ModeratorResolvable implements Resolvable<Moderator> {
 	}
 
 	public async resolve(api: API): Promise<Moderator | null> {
-
+		return getModerator(api, this.id)
 	}
 }
 
