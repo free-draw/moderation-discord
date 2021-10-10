@@ -6,12 +6,12 @@ type ModeratorAccountData = {
 }
 
 class ModeratorAccount {
+	public type: IdentityType
+	public id: string | number
+
 	constructor(data: ModeratorAccountData) {
-
-	}
-
-	public async delete(): Promise<void> {
-		// TODO
+		this.type = data.type
+		this.id = data.id
 	}
 }
 
