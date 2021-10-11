@@ -7,6 +7,7 @@ type Environment = {
 	guildId: Snowflake,
 	apiUrl: string,
 	apiToken: string,
+	redisUrl: string,
 }
 
 interface getEnvironmentVariable {
@@ -26,6 +27,7 @@ const env = {
 	guildId: getEnvironmentVariable("GUILD_ID", true),
 	apiUrl: getEnvironmentVariable("API_URL", true),
 	apiToken: getEnvironmentVariable("API_TOKEN", true),
+	redisUrl: getEnvironmentVariable("REDIS_URL", true),
 } as Environment
 
 export default env

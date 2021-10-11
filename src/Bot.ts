@@ -3,24 +3,28 @@ import log from "./util/log"
 import Commands from "./services/Commands"
 import Resolver from "./services/Resolver"
 import EventEmitter from "events"
+import Logger from "./services/Logger"
 
 class Bot extends EventEmitter {
 	public token: string
 	public clientId: string
 	public clientSecret: string
 	public guildId: string
+	public redisUrl: string
 
 	public client: Client
 	public guild: Guild | undefined
 
 	public resolver: Resolver
 	public commands: Commands
+	public logger: Logger
 
 	constructor(options: {
 		token: string,
 		clientId: string,
 		clientSecret: string,
 		guildId: string,
+		redisUrl: string,
 	}) {
 		super()
 
@@ -28,6 +32,7 @@ class Bot extends EventEmitter {
 		this.clientId = options.clientId
 		this.clientSecret = options.clientSecret
 		this.guildId = options.guildId
+		this.redisUrl = options.redisUrl
 
 		this.client = new Client({
 			intents: [],
@@ -35,6 +40,7 @@ class Bot extends EventEmitter {
 
 		this.resolver = new Resolver(this)
 		this.commands = new Commands(this)
+		this.logger = new Logger(this, options.redisUrl)
 	}
 
 	public async login() {

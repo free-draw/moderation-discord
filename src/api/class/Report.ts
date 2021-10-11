@@ -13,18 +13,20 @@ type ReportData = {
 }
 
 class Report {
+	public id: string
+	public status: ReportStatus
 	public from: UserResolvable
 	public target: UserResolvable
-	public status: ReportStatus
 
 	public reason: string
 	public notes: string
 	public snapshot: SnapshotResolvable
 
 	constructor(data: ReportData) {
+		this.id = data.id
+		this.status = data.result // TODO: Result -> status
 		this.from = new UserResolvable(data.fromUserId)
 		this.target = new UserResolvable(data.targetUserId)
-		this.status = data.result // TODO: Switch this over
 
 		this.reason = data.reason
 		this.notes = data.notes
