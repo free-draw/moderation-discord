@@ -1,29 +1,17 @@
 import { REST } from "@discordjs/rest"
 import { APIVersion, Routes, Snowflake } from "discord-api-types/v9"
 import { ApplicationCommandPermissionData, CommandInteraction, Interaction, Collection } from "discord.js"
-import { readdir } from "fs/promises"
 import { resolve } from "path"
 import Bot from "../Bot"
 import { Command, CommandPermissions } from "../interface/Command"
 import Service from "../interface/Service"
+import bulkImport from "../util/bulkImport"
 import log from "../util/log"
 import { ResolverRoles } from "./Resolver"
 
 type BasicApplicationCommandData = {
 	id: Snowflake,
 	name: string,
-}
-
-async function loadCommands(): Promise<Command[]> {
-	const files = await readdir(resolve(__dirname, "../commands"))
-	const commands = [] as Command[]
-
-	for (const fileName of files) {
-		const command = (await import(`../commands/${fileName}`)).default as Command
-		commands.push(command)
-	}
-
-	return commands
 }
 
 function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles): ApplicationCommandPermissionData[] {
@@ -72,8 +60,9 @@ class Commands implements Service {
 	private async onResolve(roles: ResolverRoles): Promise<void> {
 		log.debug("Loading commands")
 
-		const commands = await loadCommands()
-		commands.forEach((command) => this.commands.set(command.name, command))
+		const directory = resolve(__dirname, "../commands")
+		const commands = await bulkImport<Command>(directory, true)
+		Object.values(commands).forEach((command) => this.commands.set(command.name, command))
 
 		log.debug("Building commands")
 
