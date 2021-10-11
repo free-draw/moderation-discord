@@ -1,5 +1,5 @@
 import winston from "winston"
-import args from "./args"
+import args from "./option/args"
 
 const log = winston.createLogger({
 	level: args.verbose > 0 ? "debug" : "info",

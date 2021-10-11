@@ -1,6 +1,6 @@
 import { MessageEmbed } from "discord.js"
 import Action from "../api/class/Action"
-import colors from "../util/colors"
+import colors from "../util/resource/colors"
 
 async function ActionEmbed(action: Action): Promise<MessageEmbed> {
 	const fields = [

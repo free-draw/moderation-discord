@@ -5,7 +5,7 @@ import getRobloxUsername from "../api/method/roblox/getRobloxUsername"
 import getUser from "../api/method/users/getUser"
 import ActionEmbed from "../embed/Action"
 import Command from "../interface/Command"
-import colors from "../util/colors"
+import colors from "../util/resource/colors"
 import link from "../util/link"
 
 const LIMIT = 5
