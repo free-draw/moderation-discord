@@ -1,7 +1,7 @@
 import yargs from "yargs"
 import { hideBin } from "yargs/helpers"
 
-interface IArgs {
+type Args = {
 	verbose: number,
 }
 
@@ -12,4 +12,4 @@ const args = yargs(hideBin(process.argv))
 	})
 	.parse()
 
-export default args as IArgs
+export default args as Args
