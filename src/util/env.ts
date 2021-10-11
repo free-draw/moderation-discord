@@ -1,6 +1,7 @@
 import { Snowflake } from "discord-api-types"
 
 type Environment = {
+	configFile?: string,
 	token: string,
 	clientId: string,
 	clientSecret: string,
@@ -21,6 +22,7 @@ function getEnvironmentVariable(name: string, required?: boolean): string | unde
 }
 
 const env = {
+	configFile: getEnvironmentVariable("CONFIG_FILE", false),
 	token: getEnvironmentVariable("TOKEN", true),
 	clientId: getEnvironmentVariable("CLIENT_ID", true),
 	clientSecret: getEnvironmentVariable("CLIENT_SECRET", true),
