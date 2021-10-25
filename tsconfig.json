@@ -12,5 +12,9 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"forceConsistentCasingInFileNames": true
+	},
+
+	"ts-node": {
+		"transpileOnly": true
 	}
 }
