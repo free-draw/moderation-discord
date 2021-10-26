@@ -1,5 +1,4 @@
 import { TextChannel, Collection, MessageOptions } from "discord.js"
-import { readdir } from "fs/promises"
 import IORedis from "ioredis"
 import { resolve } from "path"
 import Bot from "../../Bot"
@@ -7,10 +6,6 @@ import Service from "../../interface/Service"
 import bulkImport from "../../util/bulkImport"
 import log from "../../util/log"
 import LoggerCategory from "./LoggerCategory"
-
-const categories = {
-	reports: require("./category/reports"),
-} as { [channelName: string]: LoggerCategory }
 
 type LoggerQueuedMessage = {
 	channelName: string,
