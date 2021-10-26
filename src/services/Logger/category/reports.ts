@@ -4,11 +4,15 @@ import ReportEmbed from "../../../embed/Report"
 import link from "../../../util/resource/link"
 import LoggerCategory from "../LoggerCategory"
 
+type ReportCreateEvent = {
+	report: ReportData,
+}
+
 export default {
 	channel: "reports",
 	events: {
-		async reportCreate(data: ReportData) {
-			const report = new Report(data)
+		async reportCreate(data: ReportCreateEvent) {
+			const report = new Report(data.report)
 			const embed = await ReportEmbed(report)
 
 			return {
