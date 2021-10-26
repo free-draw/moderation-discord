@@ -1,7 +1,7 @@
 import { MessageActionRow, MessageButton } from "discord.js"
 import Report, { ReportData } from "../../../api/class/Report"
 import ReportEmbed from "../../../embed/Report"
-import link from "../../../util/link"
+import link from "../../../util/resource/link"
 import LoggerCategory from "../LoggerCategory"
 
 export default {

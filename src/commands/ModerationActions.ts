@@ -6,7 +6,7 @@ import getUser from "../api/method/users/getUser"
 import ActionEmbed from "../embed/Action"
 import Command from "../interface/Command"
 import colors from "../util/resource/colors"
-import link from "../util/link"
+import link from "../util/resource/link"
 
 const LIMIT = 5
 
