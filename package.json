@@ -4,8 +4,9 @@
   "main": "main.ts",
   "license": "AGPL-3.0",
   "scripts": {
+    "dev": "ts-node . -v",
     "start": "ts-node .",
-    "dev": "ts-node . --verbose"
+    "check": "tsc --noEmit"
   },
   "dependencies": {
     "@discordjs/builders": "^0.6.0",
