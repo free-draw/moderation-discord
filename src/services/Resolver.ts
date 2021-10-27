@@ -1,7 +1,7 @@
 import EventEmitter from "events"
 import Bot from "../Bot"
 import { Collection, GuildChannel, Role } from "discord.js"
-import config from "../util/config"
+import config from "../util/option/config"
 import log from "../util/log"
 import Service from "../interface/Service"
 

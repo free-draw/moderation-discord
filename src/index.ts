@@ -1,5 +1,5 @@
 import Bot from "./Bot"
-import env from "./util/env"
+import env from "./util/option/env"
 import log from "./util/log"
 
 (async () => {
