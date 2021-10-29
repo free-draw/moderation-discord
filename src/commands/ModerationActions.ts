@@ -1,11 +1,10 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
-import { CommandInteraction, MessageActionRow, MessageButton, MessageEmbed } from "discord.js"
+import { CommandInteraction, MessageActionRow, MessageButton } from "discord.js"
 import API from "../API"
 import getRobloxUsername from "../api/method/roblox/getRobloxUsername"
 import getUser from "../api/method/users/getUser"
 import ActionEmbed from "../embed/Action"
 import Command from "../interface/Command"
-import colors from "../util/resource/colors"
 import link from "../util/resource/link"
 
 const LIMIT = 5
@@ -44,14 +43,12 @@ class ModerationActionsCommand implements Command {
 		const robloxUser = await getRobloxUsername(api, username)
 		const user = await getUser(api, robloxUser.id)
 
-		const actions = [ ...user.actions, ...user.history ]
-		actions.sort((A, B) => B.timestamp.getTime() - A.timestamp.getTime())
+		const actions = [ ...user.actions ]
+		actions.sort((A, B) => B.created.getTime() - A.created.getTime())
 
 		await interaction.editReply({
 			content: `Showing **${Math.min(LIMIT, actions.length)}** of **${actions.length}** actions on Roblox user [${robloxUser.name}](${link.roblox.profile(robloxUser.id)})`,
-
 			embeds: await Promise.all(actions.map(ActionEmbed).slice(0, LIMIT)),
-
 			components: [
 				new MessageActionRow({
 					components: [

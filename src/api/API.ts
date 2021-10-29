@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios"
 import { User } from "discord.js"
 import { URL } from "url"
 import { ModeratorAccountData } from "./class/ModeratorAccount"
-import IdentityType from "./enum/IdentityType"
+import AccountPlatform from "./enum/AccountPlatform"
 import urljoin from "url-join"
 
 class API {
@@ -20,7 +20,7 @@ class API {
 		const url = new URL(urljoin(this.url, config.url as string))
 
 		if (this.identity) {
-			url.searchParams.set("identity", `${this.identity.type}/${this.identity.id}`)
+			url.searchParams.set("identity", `${this.identity.platform}/${this.identity.id}`)
 		}
 
 		return await axios({
@@ -40,7 +40,7 @@ class API {
 
 	public asDiscord(user: User): API {
 		return this.as({
-			type: IdentityType.DISCORD,
+			platform: AccountPlatform.DISCORD,
 			id: user.id,
 		})
 	}

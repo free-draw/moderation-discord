@@ -2,21 +2,25 @@ import SnapshotLogType from "../enum/SnapshotLogType"
 
 type SnapshotPlayerData = {
 	userId: number,
-	position: { x: number, y: number },
+	position: {
+		x: number,
+		y: number,
+	},
 }
 
 type SnapshotLogData = {
 	userId: number,
 	type: SnapshotLogType,
-	data?: string | { content: string, type: string, filtered?: boolean },
+	data: any,
 }
 
 type SnapshotCanvasData = {
 	userId: number,
-	data: string,
+	data: string | Buffer,
 }
 
 type SnapshotData = {
+	id: string,
 	players: SnapshotPlayerData[],
 	logs: SnapshotLogData[],
 	canvas: SnapshotCanvasData[],
@@ -24,7 +28,7 @@ type SnapshotData = {
 
 class Snapshot {
 	constructor(data: SnapshotData) {
-		
+
 	}
 }
 

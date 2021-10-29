@@ -1,16 +1,16 @@
-import IdentityType from "../enum/IdentityType"
+import AccountPlatform from "../enum/AccountPlatform"
 
 type ModeratorAccountData = {
-	type: IdentityType,
+	platform: AccountPlatform,
 	id: string | number,
 }
 
 class ModeratorAccount {
-	public type: IdentityType
+	public platform: AccountPlatform
 	public id: string | number
 
 	constructor(data: ModeratorAccountData) {
-		this.type = data.type
+		this.platform = data.platform
 		this.id = data.id
 	}
 }

@@ -21,7 +21,7 @@ async function ActionEmbed(action: Action): Promise<MessageEmbed> {
 		title: `${action.type} ${!action.active ? "(inactive)" : ""}`,
 		description: action.reason,
 		fields,
-		timestamp: action.timestamp,
+		timestamp: action.created,
 		color: action.active ? colors.actionActive : colors.actionInactive,
 	})
 }

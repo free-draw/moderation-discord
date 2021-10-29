@@ -1,25 +1,25 @@
 import API from "../../API"
-import IdentityType from "../../enum/IdentityType"
+import AccountPlatform from "../../enum/AccountPlatform"
 import getModerator from "../../method/moderators/getModerator"
 import ModeratorAccount from "../ModeratorAccount"
 import Resolvable from "./Resolvable"
 
 class ModeratorAccountResolvable implements Resolvable<ModeratorAccount> {
-	public type: IdentityType
+	public platform: AccountPlatform
 	public id: string | number
 
-	constructor(type: IdentityType, id: string | number) {
-		this.type = type
+	constructor(type: AccountPlatform, id: string | number) {
+		this.platform = type
 		this.id = id
 	}
 
 	public async resolve(api: API): Promise<ModeratorAccount | null> {
 		const moderator = await getModerator(api, {
-			type: this.type,
+			platform: this.platform,
 			id: this.id,
 		})
 
-		return moderator?.accounts.find(account => account.type === this.type && account.id === this.id) ?? null
+		return moderator?.accounts.find(account => account.platform === this.platform && account.id === this.id) ?? null
 	}
 }
 

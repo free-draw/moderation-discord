@@ -8,7 +8,7 @@ type GetModeratorResponse = {
 
 async function getModerator(api: API, id: string | ModeratorAccountData): Promise<Moderator | null> {
 	const { data } = await api.request<GetModeratorResponse>({
-		url: typeof id === "string" ? `/moderators/${id}` : `/moderators/${id.type}/${id.id}`,
+		url: typeof id === "string" ? `/moderators/${id}` : `/moderators/${id.platform}/${id.id}`,
 		method: "GET",
 	})
 

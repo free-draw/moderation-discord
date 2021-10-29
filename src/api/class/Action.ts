@@ -6,51 +6,42 @@ import ActionType from "../enum/ActionType"
 type ActionData = {
 	id: string,
 	active: boolean,
+	created: Date,
 	type: ActionType,
-	data: any,
-	expiry?: string,
-	moderator?: string,
-
+	expiry?: Date,
 	reason: string,
-	notes: string,
-	snapshot: string,
-	report: string,
-
-	timestamp: string,
+	notes?: string,
+	snapshot?: string,
+	report?: string,
+	moderator?: string,
 }
 
 class Action {
 	public id: string
 	public active: boolean
+	public created: Date
 	public type: ActionType
-	public data: any
-	public expiry: Date | null
-	//public moderator: ModeratorResolvable | null
-
+	public expiry?: Date
 	public reason: string
-	public notes: string
-	//public snapshot: SnapshotResolvable
-	//public report: ReportResolvable
+	public notes?: string
+	//public snapshot?: SnapshotResolvable
+	//public report?: ReportResolvable
+	//public moderator?: ModeratorResolvable
 
-	public timestamp: Date
-
-	constructor(data: ActionData, active: boolean) {
+	constructor(data: ActionData) {
 		this.id = data.id
-		this.active = active
+		this.active = data.active
+		this.created = new Date(data.created)
 		this.type = data.type
-		this.data = data.data
-		this.expiry = data.expiry ? new Date(data.expiry) : null
-		//this.moderator = data.moderator ? new ModeratorResolvable(data.moderator) : null
-
+		this.expiry = data.expiry ? new Date(data.expiry) : undefined
 		this.reason = data.reason
 		this.notes = data.notes
-		//this.snapshot = new SnapshotResolvable(data.snapshot)
-		//this.report = new ReportResolvable(data.report)
-
-		this.timestamp = new Date(data.timestamp)
+		//this.snapshot = data.snapshot ? new SnapshotResolvable(data.snapshot) : undefined
+		//this.report = data.report ? new ReportResolvable(data.report) : undefined
+		//this.moderator = data.moderator ? new ModeratorResolvable(data.moderator) : undefined
 	}
 
-	public async deactivate(): Promise<void> {
+	public async delete(): Promise<void> {
 		// TODO
 	}
 }

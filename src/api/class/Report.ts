@@ -4,33 +4,31 @@ import UserResolvable from "./resolvable/UserResolvable"
 
 type ReportData = {
 	id: string,
-	result: ReportStatus,
-	targetUserId: number,
-	fromUserId: number,
+	status: ReportStatus,
+	target: number,
+	from: number,
 	reason: string,
 	notes: string,
-	snapshot: string,
+	snapshot?: string,
 }
 
 class Report {
 	public id: string
 	public status: ReportStatus
-	public from: UserResolvable
 	public target: UserResolvable
-
+	public from: UserResolvable
 	public reason: string
 	public notes: string
-	public snapshot: SnapshotResolvable
+	public snapshot?: SnapshotResolvable
 
 	constructor(data: ReportData) {
 		this.id = data.id
-		this.status = data.result // TODO: Result -> status
-		this.from = new UserResolvable(data.fromUserId)
-		this.target = new UserResolvable(data.targetUserId)
-
+		this.status = data.status
+		this.target = new UserResolvable(data.target)
+		this.from = new UserResolvable(data.from)
 		this.reason = data.reason
 		this.notes = data.notes
-		this.snapshot = new SnapshotResolvable(data.snapshot)
+		this.snapshot = data.snapshot ? new SnapshotResolvable(data.snapshot) : undefined
 	}
 
 	public async accept(): Promise<void> {
