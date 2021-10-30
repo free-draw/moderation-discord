@@ -11,10 +11,8 @@ type Environment = {
 	redisUrl: string,
 }
 
-interface getEnvironmentVariable {
-	(name: string, required: true): string | never,
-	(name: string, required?: false): string | undefined,
-}
+function getEnvironmentVariable(name: string, required: true): string | never
+function getEnvironmentVariable(name: string, required?: false): string | undefined
 function getEnvironmentVariable(name: string, required?: boolean): string | undefined | never {
 	const value = process.env[name]
 	if (required && !value) throw new Error(`Environment variable "${name}" is required`)
