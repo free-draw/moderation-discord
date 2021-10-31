@@ -1,5 +1,5 @@
 import { MessageActionRow, MessageButton } from "discord.js"
-import Report, { ReportData } from "../../../api/class/Report"
+import { Report, ReportData } from "@free-draw/moderation-client"
 import ReportEmbed from "../../../embed/Report"
 import link from "../../../util/resource/link"
 import LoggerCategory from "../LoggerCategory"

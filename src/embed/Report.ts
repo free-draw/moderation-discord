@@ -1,9 +1,6 @@
 import { MessageEmbed } from "discord.js"
-import API from "../API"
-import Report from "../api/class/Report"
-import RobloxThumbnailType from "../api/enum/RobloxThumbnailType"
-import getRobloxThumbnail from "../api/method/roblox/getRobloxThumbnail"
-import getRobloxUser from "../api/method/roblox/getRobloxUser"
+import API from "../util/API"
+import { Report, RobloxThumbnailType, getRobloxThumbnail, getRobloxUser } from "@free-draw/moderation-client"
 import colors from "../util/resource/colors"
 
 async function ReportEmbed(report: Report): Promise<MessageEmbed> {

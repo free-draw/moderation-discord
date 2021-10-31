@@ -1,11 +1,11 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { CommandInteraction, MessageActionRow, MessageButton } from "discord.js"
-import API from "../API"
-import getRobloxUsername from "../api/method/roblox/getRobloxUsername"
-import getUser from "../api/method/users/getUser"
+import API from "../util/API"
+import { getRobloxUsername, getUser } from "@free-draw/moderation-client"
 import ActionEmbed from "../embed/Action"
 import Command from "../interface/Command"
 import link from "../util/resource/link"
+import asDiscord from "../util/asDiscord"
 
 const LIMIT = 5
 
@@ -39,7 +39,7 @@ class ModerationActionsCommand implements Command {
 
 		const username = interaction.options.getString("username", true)
 
-		const api = API.asDiscord(interaction.user)
+		const api = asDiscord(API, interaction.user)
 		const robloxUser = await getRobloxUsername(api, username)
 		const user = await getUser(api, robloxUser.id)
 

@@ -1,5 +1,5 @@
 import { MessageEmbed } from "discord.js"
-import Action from "../api/class/Action"
+import { Action } from "@free-draw/moderation-client"
 import colors from "../util/resource/colors"
 
 async function ActionEmbed(action: Action): Promise<MessageEmbed> {
