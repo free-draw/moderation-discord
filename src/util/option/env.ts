@@ -1,11 +1,8 @@
-import { Snowflake } from "discord-api-types"
-
 type Environment = {
 	configFile?: string,
-	token: string,
-	clientId: string,
-	clientSecret: string,
-	guildId: Snowflake,
+	discordToken: string,
+	discordClientId: string,
+	discordClientSecret: string,
 	apiUrl: string,
 	apiToken: string,
 	redisUrl: string,
@@ -21,10 +18,9 @@ function getEnvironmentVariable(name: string, required?: boolean): string | unde
 
 const env = {
 	configFile: getEnvironmentVariable("CONFIG_FILE", false),
-	token: getEnvironmentVariable("TOKEN", true),
-	clientId: getEnvironmentVariable("CLIENT_ID", true),
-	clientSecret: getEnvironmentVariable("CLIENT_SECRET", true),
-	guildId: getEnvironmentVariable("GUILD_ID", true),
+	discordToken: getEnvironmentVariable("DISCORD_TOKEN", true),
+	discordClientId: getEnvironmentVariable("DISCORD_CLIENT_ID", true),
+	discordClientSecret: getEnvironmentVariable("DISCORD_CLIENT_SECRET", true),
 	apiUrl: getEnvironmentVariable("API_URL", true),
 	apiToken: getEnvironmentVariable("API_TOKEN", true),
 	redisUrl: getEnvironmentVariable("REDIS_URL", true),

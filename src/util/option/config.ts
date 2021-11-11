@@ -1,9 +1,10 @@
+import { Snowflake } from "discord-api-types"
 import path from "path"
 import root from "app-root-path"
-import { Snowflake } from "discord-api-types"
 import env from "./env"
 
 type Config = {
+	guild: Snowflake,
 	channels: { [name: string]: Snowflake },
 	roles: { [name: string]: Snowflake },
 }
