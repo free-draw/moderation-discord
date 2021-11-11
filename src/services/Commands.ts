@@ -61,8 +61,8 @@ class Commands implements Service {
 		log.debug("Loading commands")
 
 		const directory = resolve(__dirname, "../commands")
-		const commands = await bulkImport<Command>(directory, true)
-		Object.values(commands).forEach((command) => this.commands.set(command.name, command))
+		const commands = await bulkImport<Command>(directory, true);
+		commands.forEach((command) => this.commands.set(command.name, command))
 
 		log.debug("Building commands")
 
