@@ -5,8 +5,8 @@ import colors from "../util/resource/colors"
 
 async function ReportEmbed(report: Report): Promise<MessageEmbed> {
 	const [ from, target ] = await Promise.all([
-		await getRobloxUser(API, report.from.id),
-		await getRobloxUser(API, report.target.id),
+		getRobloxUser(API, report.from.id),
+		getRobloxUser(API, report.target.id),
 	])
 
 	const avatar = await getRobloxThumbnail(API, {
@@ -27,7 +27,7 @@ async function ReportEmbed(report: Report): Promise<MessageEmbed> {
 		thumbnail: { url: avatar },
 		footer: { text: `Status: ${report.status}` },
 		color: colors.brand,
-		timestamp: new Date(), // TODO: Record this on the server
+		timestamp: new Date(),
 	})
 }
 
