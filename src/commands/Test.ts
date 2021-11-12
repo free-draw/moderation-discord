@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { CommandInteraction } from "discord.js"
-import Command from "../interface/Command"
+import Command from "../types/interface/Command"
 
 class TestCommand implements Command {
 	public name = "test"

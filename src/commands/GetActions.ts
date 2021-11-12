@@ -3,7 +3,7 @@ import { CommandInteraction, MessageActionRow, MessageButton } from "discord.js"
 import API from "../util/API"
 import { getRobloxUsername, getUser } from "@free-draw/moderation-client"
 import ActionEmbed from "../embed/Action"
-import Command from "../interface/Command"
+import Command from "../types/interface/Command"
 import link from "../util/resource/link"
 import asDiscord from "../util/asDiscord"
 

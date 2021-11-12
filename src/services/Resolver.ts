@@ -3,7 +3,7 @@ import Bot from "../Bot"
 import { Collection, GuildChannel, Role } from "discord.js"
 import config from "../util/option/config"
 import log from "../util/log"
-import Service from "../interface/Service"
+import Service from "../types/interface/Service"
 
 type ResolverRoles = Collection<string, Role>
 type ResolverChannels = Collection<string, GuildChannel>
