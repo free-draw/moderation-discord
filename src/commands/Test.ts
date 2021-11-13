@@ -10,7 +10,7 @@ class TestCommand implements Command {
 			.setDescription("Test command")
 	}
 
-	public async execute(interaction: CommandInteraction) {
+	public async execute(interaction: CommandInteraction): Promise<void> {
 		await interaction.reply({
 			content: "hello world!",
 			ephemeral: true,

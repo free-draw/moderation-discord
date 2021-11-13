@@ -17,7 +17,7 @@ class GetUserCommand implements Command {
 		},
 	}
 
-	public build() {
+	public build(): SlashCommandBuilder {
 		const builder = new SlashCommandBuilder()
 
 		builder.setDescription("Get a user's information")
@@ -31,7 +31,7 @@ class GetUserCommand implements Command {
 		return builder
 	}
 
-	public async execute(interaction: CommandInteraction) {
+	public async execute(interaction: CommandInteraction): Promise<void> {
 		await interaction.deferReply({ ephemeral: true })
 
 		const username = interaction.options.getString("username", true)

@@ -20,7 +20,7 @@ class GetActionsCommand implements Command {
 		},
 	}
 
-	public build() {
+	public build(): SlashCommandBuilder {
 		const builder = new SlashCommandBuilder()
 
 		builder.setDescription("Gets latest actions on a user")
@@ -34,7 +34,7 @@ class GetActionsCommand implements Command {
 		return builder
 	}
 
-	public async execute(interaction: CommandInteraction) {
+	public async execute(interaction: CommandInteraction): Promise<void> {
 		await interaction.deferReply({ ephemeral: true })
 
 		const username = interaction.options.getString("username", true)
