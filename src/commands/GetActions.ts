@@ -16,7 +16,7 @@ class GetActionsCommand implements Command {
 		roles: {
 			admin: true,
 			mod: true,
-			trialMod: false,
+			trialMod: true,
 		},
 	}
 
