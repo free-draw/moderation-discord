@@ -24,6 +24,7 @@ async function ModeratorEmbed(moderator: Moderator): Promise<MessageEmbed> {
 				value: moderator.accounts.map(account => `${accountPlatformNames[account.platform]} - ${account.id}`).join("\n"),
 			},
 		],
+		footer: { text: `ID: ${moderator.id}` },
 		color: colors.brand,
 	})
 }

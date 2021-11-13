@@ -22,6 +22,7 @@ async function ActionEmbed(action: Action): Promise<MessageEmbed> {
 		description: action.reason,
 		fields,
 		timestamp: action.created,
+		footer: { text: `ID: ${action.id}` },
 		color: action.active ? colors.actionActive : colors.actionInactive,
 	})
 }

@@ -25,7 +25,7 @@ async function ReportEmbed(report: Report): Promise<MessageEmbed> {
 			},
 		],
 		thumbnail: { url: avatar },
-		footer: { text: `Status: ${report.status}` },
+		footer: { text: `Status: ${report.status} | ID: ${report.id}` },
 		color: colors.brand,
 		timestamp: new Date(),
 	})
