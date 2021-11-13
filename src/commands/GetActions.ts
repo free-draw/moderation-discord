@@ -9,7 +9,7 @@ import asDiscord from "../util/asDiscord"
 
 const LIMIT = 5
 
-class ModerationActionsCommand implements Command {
+class GetActionsCommand implements Command {
 	public name = "actions"
 	public permissions = {
 		default: false,
@@ -64,4 +64,4 @@ class ModerationActionsCommand implements Command {
 	}
 }
 
-export default new ModerationActionsCommand()
+export default new GetActionsCommand()
