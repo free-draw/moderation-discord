@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@discordjs/builders': ^0.6.0
   '@discordjs/rest': ^0.1.0-canary.0
-  '@free-draw/moderation-client': ^0.4.11
+  '@free-draw/moderation-client': ^0.4.12
   '@types/app-root-path': ^1.2.4
   '@types/ioredis': ^4.28.1
   '@types/lodash': ^4.14.176
@@ -18,6 +18,7 @@ specifiers:
   ioredis: ^4.28.0
   lodash: ^4.17.21
   make-promises-safe: ^5.1.0
+  ms: 3.0.0-canary.1
   node-cache: ^5.1.2
   pino: ^7.2.0
   pino-pretty: ^7.2.0
@@ -30,7 +31,7 @@ specifiers:
 dependencies:
   '@discordjs/builders': 0.6.0
   '@discordjs/rest': 0.1.0-canary.0
-  '@free-draw/moderation-client': 0.4.11
+  '@free-draw/moderation-client': 0.4.12
   '@types/app-root-path': 1.2.4
   '@types/ioredis': 4.28.1
   '@types/lodash': 4.14.176
@@ -44,6 +45,7 @@ dependencies:
   ioredis: 4.28.0
   lodash: 4.17.21
   make-promises-safe: 5.1.0
+  ms: 3.0.0-canary.1
   node-cache: 5.1.2
   pino: 7.2.0
   ts-node: 10.4.0_ee928ac548ac44c173bf0d4654ae2c29
@@ -124,8 +126,8 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@free-draw/moderation-client/0.4.11:
-    resolution: {integrity: sha512-l7dKXMeKiaborjJSN+2UxytW4KyA1tXtUYZ1idMvZPLXqF3WqkrHl5Q7FZ5BJChmrgMYVgDRpZr/7PmMK5+8WQ==}
+  /@free-draw/moderation-client/0.4.12:
+    resolution: {integrity: sha512-vK7WEgtPLuitBoPJXK6Ja4d6yf+6WxhHOhV3Pzgsd1v1OI9C7DWtZ+mVukXLa7jXeMT4H9znQSw3+IVNMLqTQQ==}
     dependencies:
       axios: 0.24.0
       binary-parser: 2.0.1
@@ -681,6 +683,11 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: false
+
+  /ms/3.0.0-canary.1:
+    resolution: {integrity: sha512-kh8ARjh8rMN7Du2igDRO9QJnqCb2xYTJxyQYK7vJJS4TvLLmsbyhiKpSW+t+y26gyOyMd0riphX0GeWKU3ky5g==}
+    engines: {node: '>=12.13'}
     dev: false
 
   /node-cache/5.1.2:

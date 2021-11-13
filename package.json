@@ -11,7 +11,7 @@
   "dependencies": {
     "@discordjs/builders": "^0.6.0",
     "@discordjs/rest": "^0.1.0-canary.0",
-    "@free-draw/moderation-client": "^0.4.11",
+    "@free-draw/moderation-client": "^0.4.12",
     "@types/app-root-path": "^1.2.4",
     "@types/ioredis": "^4.28.1",
     "@types/lodash": "^4.14.176",
@@ -25,6 +25,7 @@
     "ioredis": "^4.28.0",
     "lodash": "^4.17.21",
     "make-promises-safe": "^5.1.0",
+    "ms": "3.0.0-canary.1",
     "node-cache": "^5.1.2",
     "pino": "^7.2.0",
     "ts-node": "^10.4.0",
