@@ -6,22 +6,14 @@ import ActionEmbed from "../../../embed/Action"
 import ModeratorEmbed from "../../../embed/Moderator"
 import ModeratorAccountEmbed from "../../../embed/ModeratorAccount"
 import ReportEmbed from "../../../embed/Report"
-
-const indicatorColors = {
-	create: "#43a047" as ColorResolvable,
-	delete: "#d81b60" as ColorResolvable,
-	modify: "#9c27b0" as ColorResolvable,
-
-	accept: "#43a047" as ColorResolvable,
-	decline: "#d81b60" as ColorResolvable,
-}
+import colors from "../../../util/resource/colors"
 
 const messages = {
 	[LogType.CREATE_ACTION]: async (data: LogTypeData[LogType.CREATE_ACTION], moderator: Moderator) => {
 		return {
 			content: `**${moderator.name}** created an action on **${data.user.name}** (${data.user.id})`,
 			embeds: [
-				(await ActionEmbed(data.action)).setColor(indicatorColors.create),
+				(await ActionEmbed(data.action)).setColor(colors.create),
 			],
 		}
 	},
@@ -29,14 +21,14 @@ const messages = {
 		return {
 			content: `**${moderator.name}** deleted an action on **${data.user.name}** (${data.user.id})`,
 			embeds: [
-				(await ActionEmbed(data.action)).setColor(indicatorColors.delete),
+				(await ActionEmbed(data.action)).setColor(colors.delete),
 			],
 		}
 	},
 	[LogType.DELETE_ACTIONS_BULK]: async (data: LogTypeData[LogType.DELETE_ACTIONS_BULK], moderator: Moderator) => {
 		return {
 			content: `**${moderator.name}** deleted ${data.actions.length} action(s) on **${data.user.name}** (${data.user.id})`,
-			embeds: (await Promise.all(data.actions.map(ActionEmbed))).map(embed => embed.setColor(indicatorColors.delete)),
+			embeds: (await Promise.all(data.actions.map(ActionEmbed))).map(embed => embed.setColor(colors.delete)),
 		}
 	},
 
@@ -44,7 +36,7 @@ const messages = {
 		return {
 			content: `**${moderator.name}** created ${data.moderator.name} (${data.moderator.id})`,
 			embeds: [
-				(await ModeratorEmbed(data.moderator)).setColor(indicatorColors.create),
+				(await ModeratorEmbed(data.moderator)).setColor(colors.create),
 			],
 		}
 	},
@@ -52,7 +44,7 @@ const messages = {
 		return {
 			content: `**${moderator.name}** deleted ${data.moderator.name} (${data.moderator.id})`,
 			embeds: [
-				(await ModeratorEmbed(data.moderator)).setColor(indicatorColors.delete),
+				(await ModeratorEmbed(data.moderator)).setColor(colors.delete),
 			],
 		}
 	},
@@ -60,7 +52,7 @@ const messages = {
 		return {
 			content: `**${moderator.name}** updated ${data.moderator.name} (${data.moderator.id})`,
 			embeds: [
-				(await ModeratorEmbed(data.moderator)).setColor(indicatorColors.modify),
+				(await ModeratorEmbed(data.moderator)).setColor(colors.modify),
 			],
 		}
 	},
@@ -68,7 +60,7 @@ const messages = {
 		return {
 			content: `**${moderator.name}** linked a moderator account (${data.moderator.id})`,
 			embeds: [
-				(await ModeratorAccountEmbed(data.account)).setColor(indicatorColors.create),
+				(await ModeratorAccountEmbed(data.account)).setColor(colors.create),
 			],
 		}
 	},
@@ -76,7 +68,7 @@ const messages = {
 		return {
 			content: `**${moderator.name}** unlinked a moderator account (${data.moderator.id})`,
 			embeds: [
-				(await ModeratorAccountEmbed(data.account)).setColor(indicatorColors.delete),
+				(await ModeratorAccountEmbed(data.account)).setColor(colors.delete),
 			],
 		}
 	},
@@ -90,8 +82,8 @@ const messages = {
 		return {
 			content: `**${moderator.name}** accepted a report on **${target.name}** (${target.id}) from **${from.name}** (${from.id})`,
 			embeds: [
-				(await ReportEmbed(data.report)).setColor(indicatorColors.accept),
-				(await ActionEmbed(data.action)).setColor(indicatorColors.accept),
+				(await ReportEmbed(data.report)).setColor(colors.accept),
+				(await ActionEmbed(data.action)).setColor(colors.accept),
 			],
 		}
 	},
@@ -105,7 +97,7 @@ const messages = {
 		return {
 			content: `**${moderator.name}** declined a report on **${target.name}** (${target.id}) from **${from.name}** (${from.id})`,
 			embeds: [
-				(await ReportEmbed(data.report)).setColor(indicatorColors.decline),
+				(await ReportEmbed(data.report)).setColor(colors.decline),
 			],
 		}
 	},
