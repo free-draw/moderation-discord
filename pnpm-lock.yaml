@@ -3,7 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@discordjs/builders': ^0.6.0
   '@discordjs/rest': ^0.1.0-canary.0
-  '@free-draw/moderation-client': ^0.4.12
+  '@free-draw/moderation-client': ^0.4.13
   '@types/app-root-path': ^1.2.4
   '@types/ioredis': ^4.28.1
   '@types/lodash': ^4.14.176
@@ -31,7 +31,7 @@ specifiers:
 dependencies:
   '@discordjs/builders': 0.6.0
   '@discordjs/rest': 0.1.0-canary.0
-  '@free-draw/moderation-client': 0.4.12
+  '@free-draw/moderation-client': 0.4.13
   '@types/app-root-path': 1.2.4
   '@types/ioredis': 4.28.1
   '@types/lodash': 4.14.176
@@ -126,8 +126,8 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@free-draw/moderation-client/0.4.12:
-    resolution: {integrity: sha512-vK7WEgtPLuitBoPJXK6Ja4d6yf+6WxhHOhV3Pzgsd1v1OI9C7DWtZ+mVukXLa7jXeMT4H9znQSw3+IVNMLqTQQ==}
+  /@free-draw/moderation-client/0.4.13:
+    resolution: {integrity: sha512-rNMtRt2vLoWWe0uyEIlBHtGKePgvCuHteptZfC3UsSyl71p0InVWz0YZnsrytuY+uc5ZnwDbbGsnWpO8eNis2A==}
     dependencies:
       axios: 0.24.0
       binary-parser: 2.0.1
