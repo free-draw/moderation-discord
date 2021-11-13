@@ -32,9 +32,9 @@ class GetUserCommand implements Command {
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {
-		await interaction.deferReply({ ephemeral: true })
-
 		const username = interaction.options.getString("username", true)
+
+		await interaction.deferReply({ ephemeral: true })
 
 		const api = asDiscord(API, interaction.user)
 		const robloxUser = await getRobloxUsername(api, username)
