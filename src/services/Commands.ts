@@ -63,6 +63,7 @@ class Commands implements Service {
 		const directory = resolve(__dirname, "../commands")
 		const commands = await bulkImport<Command>(directory, true)
 		commands.forEach((command) => this.commands.set(command.name, command))
+		log.debug(`Found commands: ${[ ...this.commands.keys() ].join(", ")}`)
 
 		log.debug("Building commands")
 
