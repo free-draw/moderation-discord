@@ -74,13 +74,8 @@ const messages = {
 	},
 
 	[LogType.ACCEPT_REPORT]: async (data: LogTypeData[LogType.ACCEPT_REPORT], moderator: Moderator) => {
-		const [ target, from ] = await Promise.all([
-			getRobloxUser(API, data.report.target.id),
-			getRobloxUser(API, data.report.from.id),
-		])
-
 		return {
-			content: `**${moderator.name}** accepted a report on **${target.name}** (${target.id}) from **${from.name}** (${from.id})`,
+			content: `**${moderator.name}** accepted a report on **${data.target.name}** (${data.target.id}) from **${data.from.name}** (${data.from.id})`,
 			embeds: [
 				(await ReportEmbed(data.report)).setColor(colors.accept),
 				(await ActionEmbed(data.action)).setColor(colors.accept),
@@ -88,14 +83,8 @@ const messages = {
 		}
 	},
 	[LogType.DECLINE_REPORT]: async (data: LogTypeData[LogType.DECLINE_REPORT], moderator: Moderator) => {
-		console.log(data.report.target.id, data.report.from.id)
-		const [ target, from ] = await Promise.all([
-			getRobloxUser(API, data.report.target.id),
-			getRobloxUser(API, data.report.from.id),
-		])
-
 		return {
-			content: `**${moderator.name}** declined a report on **${target.name}** (${target.id}) from **${from.name}** (${from.id})`,
+			content: `**${moderator.name}** declined a report on **${data.target.name}** (${data.target.id}) from **${data.from.name}** (${data.from.id})`,
 			embeds: [
 				(await ReportEmbed(data.report)).setColor(colors.decline),
 			],
