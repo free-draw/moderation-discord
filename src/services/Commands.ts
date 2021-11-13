@@ -53,15 +53,15 @@ class Commands implements Service {
 	constructor(bot: Bot) {
 		this.bot = bot
 
-		this.bot.resolver.on("resolve", this.onResolve.bind(this))
-		this.bot.client.on("interactionCreate", this.onInteraction.bind(this))
+		bot.resolver.on("resolve", this.onResolve.bind(this))
+		bot.client.on("interactionCreate", this.onInteraction.bind(this))
 	}
 
 	private async onResolve(roles: ResolverRoles): Promise<void> {
 		log.debug("Loading commands")
 
 		const directory = resolve(__dirname, "../commands")
-		const commands = await bulkImport<Command>(directory, true);
+		const commands = await bulkImport<Command>(directory, true)
 		commands.forEach((command) => this.commands.set(command.name, command))
 
 		log.debug("Building commands")
