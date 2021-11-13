@@ -8,6 +8,14 @@ import asDiscord from "../util/asDiscord"
 
 class DeleteActionCommand implements Command {
 	public name = "deleteaction"
+	public permissions = {
+		default: false,
+		roles: {
+			admin: true,
+			mod: true,
+			trialMod: true,
+		},
+	}
 
 	public build(): SlashCommandBuilder {
 		const command = new SlashCommandBuilder()
