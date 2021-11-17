@@ -3,10 +3,10 @@ lockfileVersion: 5.3
 specifiers:
   '@discordjs/builders': ^0.6.0
   '@discordjs/rest': ^0.1.0-canary.0
-  '@free-draw/moderation-client': ^0.4.13
+  '@free-draw/moderation-client': ^0.6.1
   '@types/app-root-path': ^1.2.4
   '@types/ioredis': ^4.28.1
-  '@types/lodash': ^4.14.176
+  '@types/lodash': ^4.14.177
   '@types/node': ^16.11.7
   '@types/url-join': ^4.0.1
   '@types/yargs': ^17.0.5
@@ -31,10 +31,10 @@ specifiers:
 dependencies:
   '@discordjs/builders': 0.6.0
   '@discordjs/rest': 0.1.0-canary.0
-  '@free-draw/moderation-client': 0.4.13
+  '@free-draw/moderation-client': 0.6.1
   '@types/app-root-path': 1.2.4
   '@types/ioredis': 4.28.1
-  '@types/lodash': 4.14.176
+  '@types/lodash': 4.14.177
   '@types/node': 16.11.7
   '@types/url-join': 4.0.1
   '@types/yargs': 17.0.5
@@ -126,8 +126,8 @@ packages:
       tslib: 2.3.1
     dev: false
 
-  /@free-draw/moderation-client/0.4.13:
-    resolution: {integrity: sha512-rNMtRt2vLoWWe0uyEIlBHtGKePgvCuHteptZfC3UsSyl71p0InVWz0YZnsrytuY+uc5ZnwDbbGsnWpO8eNis2A==}
+  /@free-draw/moderation-client/0.6.1:
+    resolution: {integrity: sha512-wvvnjGUpAvgDARsYPPCC6Cu4PbHjfIoQ9Bagptm50/WwUX7e6pnrTksHUlwI4mMN+wrG0Ig8msvmdzxxcG2Irg==}
     dependencies:
       axios: 0.24.0
       binary-parser: 2.0.1
@@ -190,8 +190,8 @@ packages:
       '@types/node': 16.11.7
     dev: false
 
-  /@types/lodash/4.14.176:
-    resolution: {integrity: sha512-xZmuPTa3rlZoIbtDUyJKZQimJV3bxCmzMIO2c9Pz9afyDro6kr7R79GwcB6mRhuoPmV2p1Vb66WOJH7F886WKQ==}
+  /@types/lodash/4.14.177:
+    resolution: {integrity: sha512-0fDwydE2clKe9MNfvXHBHF9WEahRuj+msTuQqOmAApNORFvhMYZKNGGJdCzuhheVjMps/ti0Ak/iJPACMaevvw==}
     dev: false
 
   /@types/node-fetch/2.5.12:
@@ -491,12 +491,12 @@ packages:
     dependencies:
       once: 1.4.0
 
-  /engine.io-client/6.0.2:
-    resolution: {integrity: sha512-cAep9lhZV6Q8jMXx3TNSU5cydMzMed8/O7Tz5uzyqZvpNPtQ3WQXrLYGADxlsuaFmOLN7wZLmT7ImiFhUOku8g==}
+  /engine.io-client/6.0.3:
+    resolution: {integrity: sha512-IH8ZhDIwiLv0d/wXVzmjfV9Y82hbJIDhCGSVUV8o1kcpDe2I6Y3bZA3ZbJy4Ls7k7IVmcy/qn4k9RKWFhUGf5w==}
     dependencies:
       '@socket.io/component-emitter': 3.0.0
       debug: 4.3.2
-      engine.io-parser: 5.0.1
+      engine.io-parser: 5.0.2
       has-cors: 1.1.0
       parseqs: 0.0.6
       parseuri: 0.0.6
@@ -509,8 +509,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /engine.io-parser/5.0.1:
-    resolution: {integrity: sha512-j4p3WwJrG2k92VISM0op7wiq60vO92MlF3CRGxhKHy9ywG1/Dkc72g0dXeDQ+//hrcDn8gqQzoEkdO9FN0d9AA==}
+  /engine.io-parser/5.0.2:
+    resolution: {integrity: sha512-wuiO7qO/OEkPJSFueuATIXtrxF7/6GTbAO9QLv7nnbjwZ5tYhLm9zxvLwxstRs0dcT0KUlWTjtIOs1T86jt12g==}
     engines: {node: '>=10.0.0'}
     dependencies:
       base64-arraybuffer: 1.0.1
@@ -851,7 +851,7 @@ packages:
       '@socket.io/component-emitter': 3.0.0
       backo2: 1.0.2
       debug: 4.3.2
-      engine.io-client: 6.0.2
+      engine.io-client: 6.0.3
       parseuri: 0.0.6
       socket.io-parser: 4.1.1
     transitivePeerDependencies:
