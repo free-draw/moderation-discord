@@ -1,4 +1,4 @@
-import { getRobloxUser, Log, LogData, LogType, LogTypeData, Moderator } from "@free-draw/moderation-client"
+import { getModerator, getRobloxUser, Log, LogData, LogType, LogTypeData, Moderator } from "@free-draw/moderation-client"
 import API from "../../../util/API"
 import LoggerCategory from "../LoggerCategory"
 import { MessageOptions, ColorResolvable } from "discord.js"
@@ -58,7 +58,7 @@ const messages = {
 	},
 	[LogType.LINK_MODERATOR_ACCOUNT]: async (data: LogTypeData[LogType.LINK_MODERATOR_ACCOUNT], moderator: Moderator) => {
 		return {
-			content: `**${moderator.name}** linked a moderator account (${data.moderator.id})`,
+			content: `**${moderator.name}** linked a moderator account to **${data.moderator.name}** (${data.moderator.id})`,
 			embeds: [
 				(await ModeratorAccountEmbed(data.account)).setColor(colors.create),
 			],
@@ -66,7 +66,7 @@ const messages = {
 	},
 	[LogType.UNLINK_MODERATOR_ACCOUNT]: async (data: LogTypeData[LogType.UNLINK_MODERATOR_ACCOUNT], moderator: Moderator) => {
 		return {
-			content: `**${moderator.name}** unlinked a moderator account (${data.moderator.id})`,
+			content: `**${moderator.name}** unlinked a moderator account from **${data.moderator.name}** (${data.moderator.id})`,
 			embeds: [
 				(await ModeratorAccountEmbed(data.account)).setColor(colors.delete),
 			],
