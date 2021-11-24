@@ -78,7 +78,7 @@ class GetModeratorCommand implements Command {
 
 		if (subcommand === "id") {
 			const id = interaction.options.getString("id", true)
-			moderator = await getModerator(api, id)
+			moderator = await getModerator(api, id) as Moderator
 		} else if (subcommand === "discord") {
 			const user = interaction.options.getUser("user", true)
 			moderator = await findModerator(api, {
