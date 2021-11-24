@@ -9,6 +9,7 @@ import colors from "../util/resource/colors"
 
 class GetUserCommand implements Command {
 	public name = "get-user"
+	public description = "Get a user's information"
 	public permissions = {
 		default: false,
 		roles: {
@@ -21,7 +22,6 @@ class GetUserCommand implements Command {
 	public build(): SlashCommandBuilder {
 		const builder = new SlashCommandBuilder()
 
-		builder.setDescription("Get a user's information")
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")

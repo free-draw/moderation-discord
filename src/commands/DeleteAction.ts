@@ -8,6 +8,7 @@ import asDiscord from "../util/asDiscord"
 
 class DeleteActionCommand implements Command {
 	public name = "delete-action"
+	public description = "Deletes an action on a user"
 	public permissions = {
 		default: false,
 		roles: {
@@ -20,7 +21,6 @@ class DeleteActionCommand implements Command {
 	public build(): SlashCommandBuilder {
 		const command = new SlashCommandBuilder()
 
-		command.setDescription("Deletes an action on a user")
 		command.addStringOption((option) => {
 			return option
 				.setName("username")

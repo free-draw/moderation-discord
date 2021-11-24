@@ -71,6 +71,7 @@ class Commands implements Service {
 			const builder = command.build()
 
 			builder.setName(command.name)
+			builder.setDescription(command.description)
 			if (command.permissions) builder.setDefaultPermission(command.permissions.default)
 
 			return builder.toJSON()

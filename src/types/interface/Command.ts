@@ -10,6 +10,7 @@ type CommandPermissions = {
 
 interface Command {
 	name: string,
+	description: string,
 	permissions?: CommandPermissions,
 	build(): SlashCommandBuilder,
 	execute(interaction: CommandInteraction): Promise<void> | void,

@@ -9,6 +9,7 @@ import asDiscord from "../util/asDiscord"
 
 class DeleteActionsBulk implements Command {
 	public name = "delete-actions-bulk"
+	public description = "Deletes all actions from a user that match specified criteria"
 	public permissions = {
 		default: false,
 		roles: {
@@ -21,7 +22,6 @@ class DeleteActionsBulk implements Command {
 	public build(): SlashCommandBuilder {
 		const command = new SlashCommandBuilder()
 
-		command.setDescription("Deletes all actions from a user that match specified criteria")
 		command.addStringOption((option) => {
 			return option
 				.setName("username")

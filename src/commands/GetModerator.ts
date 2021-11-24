@@ -9,6 +9,7 @@ import asDiscord from "../util/asDiscord"
 
 class GetModeratorCommand implements Command {
 	public name = "get-moderator"
+	public description = "Get a moderator by ID or account"
 	public permissions = {
 		default: false,
 		roles: {
@@ -21,7 +22,6 @@ class GetModeratorCommand implements Command {
 	public build(): SlashCommandBuilder {
 		const command = new SlashCommandBuilder()
 
-		command.setDescription("Get a moderator by ID or account")
 		command.addSubcommand((subcommand) => {
 			subcommand.setName("id")
 			subcommand.setDescription("Get a moderator by ID")

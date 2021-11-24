@@ -12,6 +12,7 @@ const LIMIT = 5
 
 class GetActionsCommand implements Command {
 	public name = "get-actions"
+	public description = "Gets latest actions on a user"
 	public permissions = {
 		default: false,
 		roles: {
@@ -24,7 +25,6 @@ class GetActionsCommand implements Command {
 	public build(): SlashCommandBuilder {
 		const builder = new SlashCommandBuilder()
 
-		builder.setDescription("Gets latest actions on a user")
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")

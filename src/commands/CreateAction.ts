@@ -10,6 +10,7 @@ import ActionEmbed from "../embed/Action"
 
 class CreateActionCommand implements Command {
 	public name = "create-action"
+	public description = "Creates an action on the specified user"
 	public permissions = {
 		default: false,
 		roles: {
@@ -22,7 +23,6 @@ class CreateActionCommand implements Command {
 	public build(): SlashCommandBuilder {
 		const command = new SlashCommandBuilder()
 
-		command.setDescription("Creates an action on the specified user")
 		command.addStringOption((option) => {
 			return option
 				.setName("username")
