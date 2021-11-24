@@ -8,7 +8,7 @@ import asDiscord from "../util/asDiscord"
 import colors from "../util/resource/colors"
 
 class GetUserCommand implements Command {
-	public name = "user"
+	public name = "get-user"
 	public permissions = {
 		default: false,
 		roles: {

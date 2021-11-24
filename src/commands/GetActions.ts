@@ -11,7 +11,7 @@ import ErrorEmbed from "../embed/Error"
 const LIMIT = 5
 
 class GetActionsCommand implements Command {
-	public name = "actions"
+	public name = "get-actions"
 	public permissions = {
 		default: false,
 		roles: {

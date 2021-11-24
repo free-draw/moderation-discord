@@ -9,7 +9,7 @@ import API from "../util/API"
 import ActionEmbed from "../embed/Action"
 
 class CreateActionCommand implements Command {
-	public name = "createaction"
+	public name = "create-action"
 	public permissions = {
 		default: false,
 		roles: {

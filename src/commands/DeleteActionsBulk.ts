@@ -8,7 +8,7 @@ import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 
 class DeleteActionsBulk implements Command {
-	public name = "deleteactionsbulk"
+	public name = "delete-actions-bulk"
 	public permissions = {
 		default: false,
 		roles: {

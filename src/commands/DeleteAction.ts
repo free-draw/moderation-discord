@@ -7,7 +7,7 @@ import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 
 class DeleteActionCommand implements Command {
-	public name = "deleteaction"
+	public name = "delete-action"
 	public permissions = {
 		default: false,
 		roles: {

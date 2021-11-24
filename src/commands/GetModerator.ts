@@ -8,7 +8,7 @@ import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 
 class GetModeratorCommand implements Command {
-	public name = "moderator"
+	public name = "get-moderator"
 	public permissions = {
 		default: false,
 		roles: {
