@@ -18,23 +18,20 @@ class DeleteActionCommand implements Command {
 		},
 	}
 
-	public build(): SlashCommandBuilder {
-		const command = new SlashCommandBuilder()
-
-		command.addStringOption((option) => {
+	public build(builder: SlashCommandBuilder): void {
+		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setRequired(true)
 				.setDescription("Username of the user to delete an action from")
 		})
-		command.addStringOption((option) => {
+
+		builder.addStringOption((option) => {
 			return option
 				.setName("id")
 				.setRequired(true)
 				.setDescription("ID of the action to delete")
 		})
-
-		return command
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {

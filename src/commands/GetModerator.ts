@@ -19,10 +19,8 @@ class GetModeratorCommand implements Command {
 		},
 	}
 
-	public build(): SlashCommandBuilder {
-		const command = new SlashCommandBuilder()
-
-		command.addSubcommand((subcommand) => {
+	public build(builder: SlashCommandBuilder): void {
+		builder.addSubcommand((subcommand) => {
 			subcommand.setName("id")
 			subcommand.setDescription("Get a moderator by ID")
 			subcommand.addStringOption((option) => {
@@ -34,7 +32,8 @@ class GetModeratorCommand implements Command {
 
 			return subcommand
 		})
-		command.addSubcommandGroup((group) => {
+
+		builder.addSubcommandGroup((group) => {
 			group.setName("account")
 			group.setDescription("Get by account")
 			group.addSubcommand((subcommand) => {
@@ -49,6 +48,7 @@ class GetModeratorCommand implements Command {
 
 				return subcommand
 			})
+
 			group.addSubcommand((subcommand) => {
 				subcommand.setName("roblox")
 				subcommand.setDescription("Get a moderator by Roblox account")
@@ -64,8 +64,6 @@ class GetModeratorCommand implements Command {
 
 			return group
 		})
-
-		return command
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {

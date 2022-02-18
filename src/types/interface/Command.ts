@@ -12,7 +12,7 @@ interface Command {
 	name: string,
 	description: string,
 	permissions?: CommandPermissions,
-	build(): SlashCommandBuilder,
+	build(builder: SlashCommandBuilder): void,
 	execute(interaction: CommandInteraction): Promise<void> | void,
 }
 

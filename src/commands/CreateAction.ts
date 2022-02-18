@@ -20,16 +20,15 @@ class CreateActionCommand implements Command {
 		},
 	}
 
-	public build(): SlashCommandBuilder {
-		const command = new SlashCommandBuilder()
-
-		command.addStringOption((option) => {
+	public build(builder: SlashCommandBuilder): void {
+		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setRequired(true)
 				.setDescription("Username of the user to create an action on")
 		})
-		command.addStringOption((option) => {
+
+		builder.addStringOption((option) => {
 			return option
 				.setName("type")
 				.setRequired(true)
@@ -38,20 +37,20 @@ class CreateActionCommand implements Command {
 				.addChoice("Draw-ban", ActionType.DRAWBAN)
 				.addChoice("Mute", ActionType.MUTE)
 		})
-		command.addStringOption((option) => {
+
+		builder.addStringOption((option) => {
 			return option
 				.setName("reason")
 				.setRequired(true)
 				.setDescription("Reason for the action")
 		})
-		command.addStringOption((option) => {
+
+		builder.addStringOption((option) => {
 			return option
 				.setName("duration")
 				.setRequired(false)
 				.setDescription("Duration of the action")
 		})
-
-		return command
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {

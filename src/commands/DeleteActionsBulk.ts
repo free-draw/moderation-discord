@@ -18,16 +18,15 @@ class DeleteActionsBulk implements Command {
 		},
 	}
 
-	public build(): SlashCommandBuilder {
-		const command = new SlashCommandBuilder()
-
-		command.addStringOption((option) => {
+	public build(builder: SlashCommandBuilder): void {
+		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setRequired(true)
 				.setDescription("Username of the user to delete actions from")
 		})
-		command.addStringOption((option) => {
+
+		builder.addStringOption((option) => {
 			return option
 				.setName("type")
 				.setRequired(true)
@@ -36,8 +35,6 @@ class DeleteActionsBulk implements Command {
 				.addChoice("Draw-ban", ActionType.DRAWBAN)
 				.addChoice("Mute", ActionType.MUTE)
 		})
-
-		return command
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {

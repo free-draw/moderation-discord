@@ -19,17 +19,13 @@ class GetUserCommand implements Command {
 		},
 	}
 
-	public build(): SlashCommandBuilder {
-		const builder = new SlashCommandBuilder()
-
+	public build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setRequired(true)
 				.setDescription("User to get information about")
 		})
-
-		return builder
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {

@@ -1,3 +1,4 @@
+import { SlashCommandBuilder } from "@discordjs/builders"
 import { REST } from "@discordjs/rest"
 import { APIVersion, Routes, Snowflake } from "discord-api-types/v9"
 import { ApplicationCommandPermissionData, CommandInteraction, Interaction, Collection } from "discord.js"
@@ -68,11 +69,13 @@ class Commands implements Service {
 		log.debug("Building commands")
 
 		const body = commands.map((command) => {
-			const builder = command.build()
+			const builder = new SlashCommandBuilder()
 
 			builder.setName(command.name)
 			builder.setDescription(command.description)
 			if (command.permissions) builder.setDefaultPermission(command.permissions.default)
+
+			command.build(builder)
 
 			return builder.toJSON()
 		})

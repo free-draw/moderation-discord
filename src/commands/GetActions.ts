@@ -22,17 +22,13 @@ class GetActionsCommand implements Command {
 		},
 	}
 
-	public build(): SlashCommandBuilder {
-		const builder = new SlashCommandBuilder()
-
+	public build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setDescription("Username for the requested user")
 				.setRequired(true)
 		})
-
-		return builder
 	}
 
 	public async execute(interaction: CommandInteraction): Promise<void> {
