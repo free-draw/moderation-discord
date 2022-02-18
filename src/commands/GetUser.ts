@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { getRobloxThumbnail, getRobloxUsername, getUser, RobloxThumbnailType } from "@free-draw/moderation-client"
-import { CommandInteraction, MessageActionRow, MessageButton, MessageEmbed } from "discord.js"
+import { CommandInteraction, MessageEmbed } from "discord.js"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"

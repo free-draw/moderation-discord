@@ -1,7 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { ActionType, deleteActionsBulk, getRobloxUsername } from "@free-draw/moderation-client"
 import { CommandInteraction } from "discord.js"
-import _ from "lodash"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
