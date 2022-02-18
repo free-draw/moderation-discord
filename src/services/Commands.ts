@@ -61,8 +61,7 @@ class Commands implements Service {
 	private async onResolve(roles: ResolverRoles): Promise<void> {
 		log.debug("Loading commands")
 
-		const directory = resolve(__dirname, "../commands")
-		const commands = await bulkImport<Command>(directory, true)
+		const commands = await bulkImport<Command>(resolve(__dirname, "../commands"), true)
 		commands.forEach((command) => this.commands.set(command.name, command))
 		log.debug(`Found commands: ${[ ...this.commands.keys() ].join(", ")}`)
 
