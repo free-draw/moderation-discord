@@ -4,6 +4,7 @@ import { APIVersion, Routes, Snowflake } from "discord-api-types/v9"
 import { ApplicationCommandPermissionData, Interaction, Collection, ApplicationCommandPermissionType } from "discord.js"
 import { resolve } from "path"
 import Bot from "../Bot"
+import ErrorEmbed from "../embed/Error"
 import { Command, CommandPermissions } from "../types/interface/Command"
 import Service from "../types/interface/Service"
 import bulkImport from "../util/bulkImport"
@@ -116,12 +117,34 @@ class Commands implements Service {
 			const command = this.commands.get(name)
 
 			if (command) {
-				await command.execute(interaction)
+				try {
+					await command.execute(interaction)
+				} catch (error) {
+					const data = {
+						embeds: [
+							await ErrorEmbed([
+								"Command failed to execute",
+								"",
+								"```",
+								(error as Error).toString(),
+								"```",
+							].join("\n")),
+						],
+					}
+
+					if (interaction.replied || interaction.deferred) {
+						interaction.editReply(data)
+					} else {
+						interaction.reply(data)
+					}
+				}
 			} else {
 				log.error(`Unknown command name: ${name}`)
 
 				await interaction.reply({
-					content: `**Internal Error**: Failed to find command \`${name}\` in collection`,
+					embeds: [
+						await ErrorEmbed(`Failed to find command \`${name}\` in collection`),
+					],
 					ephemeral: true,
 				})
 			}
