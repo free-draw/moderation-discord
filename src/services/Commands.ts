@@ -118,7 +118,7 @@ class Commands implements Service {
 
 			if (command) {
 				try {
-					await command.execute(interaction)
+					await command.execute.call(this.bot, interaction)
 				} catch (error) {
 					const data = {
 						embeds: [
