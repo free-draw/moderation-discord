@@ -1,19 +1,17 @@
-import { ColorResolvable } from "discord.js"
-
 export default {
-	brand: "#00897b" as ColorResolvable,
-	error: "#43a047" as ColorResolvable,
+	brand: 0x00897b,
+	error: 0x43a047,
 
-	actionActive: "#00897b" as ColorResolvable,
-	actionInactive: "#5b5b5b" as ColorResolvable,
+	actionActive: 0x00897b,
+	actionInactive: 0x5b5b5b,
 
-	userHasActions: "#d81b60" as ColorResolvable,
-	userHasNoActions: "#43a047" as ColorResolvable,
+	userHasActions: 0xd81b60,
+	userHasNoActions: 0x43a047,
 
-	create: "#43a047" as ColorResolvable,
-	delete: "#d81b60" as ColorResolvable,
-	modify: "#9c27b0" as ColorResolvable,
+	create: 0x43a047,
+	delete: 0xd81b60,
+	modify: 0x9c27b0,
 
-	accept: "#43a047" as ColorResolvable,
-	decline: "#d81b60" as ColorResolvable,
+	accept: 0x43a047,
+	decline: 0xd81b60,
 }

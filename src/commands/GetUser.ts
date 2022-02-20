@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { getRobloxThumbnail, getRobloxUsername, getUser, RobloxThumbnailType } from "@free-draw/moderation-client"
-import { CommandInteraction, MessageEmbed } from "discord.js"
+import { ChatInputCommandInteraction, Embed } from "discord.js"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -28,7 +28,7 @@ class GetUserCommand implements Command {
 		})
 	}
 
-	public async execute(interaction: CommandInteraction): Promise<void> {
+	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
@@ -49,7 +49,7 @@ class GetUserCommand implements Command {
 
 			await interaction.editReply({
 				embeds: [
-					new MessageEmbed({
+					new Embed({
 						author: {
 							name: `${robloxUser.name} (${robloxUser.id})`,
 							url: `https://www.roblox.com/users/${robloxUser.id}/profile`,

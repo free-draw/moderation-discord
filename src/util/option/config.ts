@@ -1,4 +1,4 @@
-import { Snowflake } from "discord-api-types"
+import { Snowflake } from "discord-api-types/globals"
 import path from "path"
 import root from "app-root-path"
 import env from "./env"

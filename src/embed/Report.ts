@@ -1,9 +1,9 @@
-import { MessageEmbed } from "discord.js"
+import { Embed } from "discord.js"
 import API from "../util/API"
 import { Report, RobloxThumbnailType, getRobloxThumbnail, getRobloxUser } from "@free-draw/moderation-client"
 import colors from "../util/resource/colors"
 
-async function ReportEmbed(report: Report): Promise<MessageEmbed> {
+async function ReportEmbed(report: Report): Promise<Embed> {
 	const [ from, target ] = await Promise.all([
 		getRobloxUser(API, report.from.id),
 		getRobloxUser(API, report.target.id),
@@ -15,7 +15,7 @@ async function ReportEmbed(report: Report): Promise<MessageEmbed> {
 		size: "150x150",
 	})
 
-	return new MessageEmbed({
+	return new Embed({
 		title: `${from.name} → ${target.name}`,
 		description: report.reason,
 		fields: [

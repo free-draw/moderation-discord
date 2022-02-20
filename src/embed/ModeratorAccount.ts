@@ -1,5 +1,5 @@
 import { AccountPlatform, ModeratorAccount } from "@free-draw/moderation-client"
-import { MessageEmbed } from "discord.js"
+import { Embed } from "discord.js"
 import colors from "../util/resource/colors"
 
 const accountPlatformNames = {
@@ -7,8 +7,8 @@ const accountPlatformNames = {
 	[AccountPlatform.ROBLOX]: "Roblox",
 }
 
-async function ModeratorAccountEmbed(account: ModeratorAccount): Promise<MessageEmbed> {
-	return new MessageEmbed({
+async function ModeratorAccountEmbed(account: ModeratorAccount): Promise<Embed> {
+	return new Embed({
 		title: `${accountPlatformNames[account.platform]} Account`,
 		description: account.id.toString(),
 		color: colors.brand,

@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
-import { Snowflake } from "discord-api-types"
-import { CommandInteraction } from "discord.js"
+import { Snowflake } from "discord-api-types/v10"
+import { ChatInputCommandInteraction } from "discord.js"
 
 type CommandPermissions = {
 	default: boolean,
@@ -13,7 +13,7 @@ interface Command {
 	description: string,
 	permissions?: CommandPermissions,
 	build(builder: SlashCommandBuilder): void,
-	execute(interaction: CommandInteraction): Promise<void> | void,
+	execute(interaction: ChatInputCommandInteraction): Promise<void> | void,
 }
 
 export default Command

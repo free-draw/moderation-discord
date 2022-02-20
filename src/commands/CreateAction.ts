@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { ActionType, createAction, getRobloxUsername } from "@free-draw/moderation-client"
-import { CommandInteraction } from "discord.js"
+import { ChatInputCommandInteraction } from "discord.js"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import ms from "ms"
@@ -33,9 +33,9 @@ class CreateActionCommand implements Command {
 				.setName("type")
 				.setRequired(true)
 				.setDescription("Type of action to create")
-				.addChoice("Ban", ActionType.BAN)
-				.addChoice("Draw-ban", ActionType.DRAWBAN)
-				.addChoice("Mute", ActionType.MUTE)
+				.addChoice({ name: "Ban", value: ActionType.BAN })
+				.addChoice({ name: "Draw-ban", value: ActionType.DRAWBAN })
+				.addChoice({ name: "Mute", value: ActionType.MUTE })
 		})
 
 		builder.addStringOption((option) => {
@@ -53,7 +53,7 @@ class CreateActionCommand implements Command {
 		})
 	}
 
-	public async execute(interaction: CommandInteraction): Promise<void> {
+	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 		const type = interaction.options.getString("type", true) as ActionType
 		const reason = interaction.options.getString("reason", true)
