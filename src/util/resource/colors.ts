@@ -1,6 +1,6 @@
 export default {
 	brand: 0x00897b,
-	error: 0x43a047,
+	error: 0xe53935,
 
 	actionActive: 0x00897b,
 	actionInactive: 0x5b5b5b,
