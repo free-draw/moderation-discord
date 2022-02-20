@@ -9,7 +9,7 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
+    "@discordjs/builders": "^0.13.0-dev.1645142857.f7257f0",
     "@discordjs/rest": "^0.1.0-canary.0",
     "@free-draw/moderation-client": "^0.6.7",
     "@types/app-root-path": "^1.2.4",
@@ -20,8 +20,8 @@
     "@types/yargs": "^17.0.8",
     "app-root-path": "^3.0.0",
     "axios": "^0.21.4",
-    "discord-api-types": "^0.23.1",
-    "discord.js": "^13.6.0",
+    "discord-api-types": "^0.27.3-next.8d432f2.1645207075",
+    "discord.js": "^14.0.0-dev.1645142857.f7257f0",
     "ioredis": "^4.28.5",
     "lodash": "^4.17.21",
     "make-promises-safe": "^5.1.0",
