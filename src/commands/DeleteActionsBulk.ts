@@ -6,19 +6,19 @@ import Command from "../types/interface/Command"
 import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 
-class DeleteActionsBulk implements Command {
-	public name = "delete-actions-bulk"
-	public description = "Deletes all actions from a user that match specified criteria"
-	public permissions = {
+export default {
+	name: "delete-actions-bulk",
+	description: "Deletes all actions from a user that match specified criteria",
+	permissions: {
 		default: false,
 		roles: {
 			admin: true,
 			mod: true,
 			trialMod: true,
 		},
-	}
+	},
 
-	public build(builder: SlashCommandBuilder): void {
+	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -35,9 +35,9 @@ class DeleteActionsBulk implements Command {
 				.addChoice({ name: "Draw-ban", value: ActionType.DRAWBAN })
 				.addChoice({ name: "Mute", value: ActionType.MUTE })
 		})
-	}
+	},
 
-	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 		const type = interaction.options.getString("type", true) as ActionType
 
@@ -59,7 +59,5 @@ class DeleteActionsBulk implements Command {
 				],
 			})
 		}
-	}
-}
-
-export default new DeleteActionsBulk()
+	},
+} as Command

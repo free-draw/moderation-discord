@@ -7,19 +7,19 @@ import Command from "../types/interface/Command"
 import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 
-class GetModeratorCommand implements Command {
-	public name = "get-moderator"
-	public description = "Get a moderator by ID or account"
-	public permissions = {
+export default {
+	name: "get-moderator",
+	description: "Get a moderator by ID or account",
+	permissions: {
 		default: false,
 		roles: {
 			admin: true,
 			mod: true,
 			trialMod: true,
 		},
-	}
+	},
 
-	public build(builder: SlashCommandBuilder): void {
+	build(builder: SlashCommandBuilder): void {
 		builder.addSubcommand((subcommand) => {
 			subcommand.setName("id")
 			subcommand.setDescription("Get a moderator by ID")
@@ -64,9 +64,9 @@ class GetModeratorCommand implements Command {
 
 			return group
 		})
-	}
+	},
 
-	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		await interaction.deferReply({ ephemeral: true })
 
 		let moderator: Moderator | undefined
@@ -117,7 +117,5 @@ class GetModeratorCommand implements Command {
 				],
 			})
 		}
-	}
-}
-
-export default new GetModeratorCommand()
+	},
+} as Command

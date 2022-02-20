@@ -6,19 +6,19 @@ import Command from "../types/interface/Command"
 import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 
-class DeleteActionCommand implements Command {
-	public name = "delete-action"
-	public description = "Deletes an action on a user"
-	public permissions = {
+export default {
+	name: "delete-action",
+	description: "Deletes an action on a user",
+	permissions: {
 		default: false,
 		roles: {
 			admin: true,
 			mod: true,
 			trialMod: true,
 		},
-	}
+	},
 
-	public build(builder: SlashCommandBuilder): void {
+	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -32,9 +32,9 @@ class DeleteActionCommand implements Command {
 				.setRequired(true)
 				.setDescription("ID of the action to delete")
 		})
-	}
+	},
 
-	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 		const id = interaction.options.getString("id", true)
 
@@ -63,7 +63,5 @@ class DeleteActionCommand implements Command {
 				],
 			})
 		}
-	}
-}
-
-export default new DeleteActionCommand()
+	},
+} as Command

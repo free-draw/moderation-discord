@@ -10,28 +10,28 @@ import ErrorEmbed from "../embed/Error"
 
 const LIMIT = 5
 
-class GetActionsCommand implements Command {
-	public name = "get-actions"
-	public description = "Gets latest actions on a user"
-	public permissions = {
+export default {
+	name: "get-actions",
+	description: "Gets latest actions on a user",
+	permissions: {
 		default: false,
 		roles: {
 			admin: true,
 			mod: true,
 			trialMod: true,
 		},
-	}
+	},
 
-	public build(builder: SlashCommandBuilder): void {
+	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setDescription("Username for the requested user")
 				.setRequired(true)
 		})
-	}
+	},
 
-	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
@@ -67,7 +67,5 @@ class GetActionsCommand implements Command {
 				],
 			})
 		}
-	}
-}
-
-export default new GetActionsCommand()
+	},
+} as Command

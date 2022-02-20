@@ -7,28 +7,28 @@ import API from "../util/API"
 import asDiscord from "../util/asDiscord"
 import colors from "../util/resource/colors"
 
-class GetUserCommand implements Command {
-	public name = "get-user"
-	public description = "Get a user's information"
-	public permissions = {
+export default {
+	name: "get-user",
+	description: "Get a user's information",
+	permissions: {
 		default: false,
 		roles: {
 			admin: true,
 			mod: true,
 			trialMod: true,
 		},
-	}
+	},
 
-	public build(builder: SlashCommandBuilder): void {
+	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
 				.setRequired(true)
 				.setDescription("User to get information about")
 		})
-	}
+	},
 
-	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
@@ -73,7 +73,5 @@ class GetUserCommand implements Command {
 				],
 			})
 		}
-	}
-}
-
-export default new GetUserCommand()
+	},
+} as Command

@@ -8,19 +8,19 @@ import asDiscord from "../util/asDiscord"
 import API from "../util/API"
 import ActionEmbed from "../embed/Action"
 
-class CreateActionCommand implements Command {
-	public name = "create-action"
-	public description = "Creates an action on the specified user"
-	public permissions = {
+export default {
+	name: "create-action",
+	description: "Creates an action on the specified user",
+	permissions: {
 		default: false,
 		roles: {
 			admin: true,
 			mod: true,
 			trialMod: true,
 		},
-	}
+	},
 
-	public build(builder: SlashCommandBuilder): void {
+	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -51,9 +51,9 @@ class CreateActionCommand implements Command {
 				.setRequired(false)
 				.setDescription("Duration of the action")
 		})
-	}
+	},
 
-	public async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 		const type = interaction.options.getString("type", true) as ActionType
 		const reason = interaction.options.getString("reason", true)
@@ -99,7 +99,5 @@ class CreateActionCommand implements Command {
 				],
 			})
 		}
-	}
-}
-
-export default new CreateActionCommand()
+	},
+} as Command
