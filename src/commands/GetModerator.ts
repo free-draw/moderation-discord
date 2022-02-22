@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { AccountPlatform, findModerator, getModerator, getRobloxUsername, Moderator } from "@free-draw/moderation-client"
-import { ChatInputCommandInteraction } from "discord.js"
+import { CommandInteraction } from "discord.js"
 import ModeratorEmbed from "../embed/Moderator"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
@@ -66,7 +66,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: CommandInteraction): Promise<void> {
 		await interaction.deferReply({ ephemeral: true })
 
 		let moderator: Moderator | undefined

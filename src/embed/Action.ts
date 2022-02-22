@@ -1,8 +1,8 @@
-import { Embed } from "discord.js"
+import { MessageEmbed } from "discord.js"
 import { Action } from "@free-draw/moderation-client"
 import colors from "../util/resource/colors"
 
-async function ActionEmbed(action: Action): Promise<Embed> {
+async function ActionEmbed(action: Action): Promise<MessageEmbed> {
 	const fields = [
 		{
 			name: "Notes",
@@ -17,7 +17,7 @@ async function ActionEmbed(action: Action): Promise<Embed> {
 		})
 	}
 
-	return new Embed({
+	return new MessageEmbed({
 		title: `${action.type} ${!action.active ? "(inactive)" : ""}`,
 		description: action.reason,
 		fields,

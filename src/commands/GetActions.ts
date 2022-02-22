@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
-import { ActionRow, ButtonComponent, ButtonStyle, ChatInputCommandInteraction } from "discord.js"
+import { CommandInteraction, MessageActionRow, MessageButton } from "discord.js"
 import API from "../util/API"
 import { getRobloxUsername, getUser } from "@free-draw/moderation-client"
 import ActionEmbed from "../embed/Action"
@@ -31,7 +31,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction: CommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
@@ -49,12 +49,12 @@ export default {
 				content: `Showing **${Math.min(LIMIT, actions.length)}** of **${actions.length}** actions on Roblox user [${robloxUser.name}](${link.roblox.profile(robloxUser.id)})`,
 				embeds: await Promise.all(actions.map(ActionEmbed).slice(0, LIMIT)),
 				components: [
-					new ActionRow({
+					new MessageActionRow({
 						components: [
-							new ButtonComponent({
+							new MessageButton({
 								label: "View on Moderation Hub",
 								url: link.moderation.user(robloxUser.id),
-								style: ButtonStyle.Link,
+								style: "LINK",
 							}),
 						],
 					})

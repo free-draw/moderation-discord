@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { REST } from "@discordjs/rest"
 import { APIVersion, Routes, Snowflake } from "discord-api-types/v9"
-import { ApplicationCommandPermissionData, Interaction, Collection, ApplicationCommandPermissionType } from "discord.js"
+import { ApplicationCommandPermissionData, Interaction, Collection } from "discord.js"
 import { resolve } from "path"
 import Bot from "../Bot"
 import ErrorEmbed from "../embed/Error"
@@ -29,7 +29,7 @@ function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles)
 
 			output.push({
 				id: role.id,
-				type: ApplicationCommandPermissionType.Role,
+				type: "ROLE",
 				permission: rolePermissions[roleName],
 			})
 		}
@@ -39,7 +39,7 @@ function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles)
 		for (const user in userPermissions) {
 			output.push({
 				id: user,
-				type: ApplicationCommandPermissionType.User,
+				type: "USER",
 				permission: userPermissions[user],
 			})
 		}
@@ -112,7 +112,7 @@ class Commands implements Service {
 	}
 
 	private async onInteraction(interaction: Interaction): Promise<void> {
-		if (interaction.isChatInputCommand()) {
+		if (interaction.isCommand()) {
 			const name = interaction.commandName
 			const command = this.commands.get(name)
 

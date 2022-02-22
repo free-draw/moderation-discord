@@ -1,4 +1,4 @@
-import { ActionRow, ButtonComponent, ButtonStyle } from "discord.js"
+import { MessageActionRow, MessageButton } from "discord.js"
 import { Report, ReportData } from "@free-draw/moderation-client"
 import ReportEmbed from "../../../embed/Report"
 import link from "../../../util/resource/link"
@@ -18,11 +18,11 @@ export default {
 			return {
 				embeds: [ embed ],
 				components: [
-					new ActionRow({
+					new MessageActionRow({
 						components: [
-							new ButtonComponent({
+							new MessageButton({
 								label: "View on Moderation Panel",
-								style: ButtonStyle.Link,
+								style: "LINK",
 								url: link.moderation.report(report.id),
 							})
 						],
