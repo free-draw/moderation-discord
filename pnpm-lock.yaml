@@ -12,7 +12,7 @@ specifiers:
   '@types/yargs': ^17.0.10
   app-root-path: ^3.0.0
   axios: ^0.21.4
-  discord-api-types: ^0.27.3
+  discord-api-types: 0.32.0
   discord.js: ^13.6.0
   dotenv: ^10.0.0
   ioredis: ^4.28.5
@@ -41,7 +41,7 @@ dependencies:
   '@types/yargs': 17.0.10
   app-root-path: 3.0.0
   axios: 0.21.4
-  discord-api-types: 0.27.3
+  discord-api-types: 0.32.0
   discord.js: 13.6.0
   ioredis: 4.28.5
   lodash: 4.17.21
@@ -526,8 +526,8 @@ packages:
     deprecated: No longer supported. Install the latest release!
     dev: false
 
-  /discord-api-types/0.27.3:
-    resolution: {integrity: sha512-HOG64DTpZ7CB5EU9eKbjHD50H5qG1pxKG8pmFfHUMKjKvEWeLBHfw0c9xF1cruiYLnBb3+n7m3jBWxZ3H1hcgQ==}
+  /discord-api-types/0.32.0:
+    resolution: {integrity: sha512-i6HyCwWRocvtIcM7hamI3eQTCxLN/UvWtm/JktaXRSWDmASfhHam2juhej+e4U/Q/Fni1uUlyloMCBTL04Dl6Q==}
     dev: false
 
   /discord.js/13.6.0:
