@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { REST } from "@discordjs/rest"
 import { APIVersion, Routes, Snowflake } from "discord-api-types/v9"
-import { ApplicationCommandPermissionData, Interaction, Collection } from "discord.js"
+import { ApplicationCommandPermissionData, Interaction, Collection, GuildApplicationCommandPermissionData } from "discord.js"
 import { resolve } from "path"
 import Bot from "../Bot"
 import ErrorEmbed from "../embed/Error"
@@ -62,6 +62,8 @@ class Commands implements Service {
 	private async onResolve(roles: ResolverRoles): Promise<void> {
 		log.debug("Loading commands")
 
+		// BUILD COMMAND DATA //
+
 		const commands = await bulkImport<Command>(resolve(__dirname, "../commands"), true)
 		commands.forEach((command) => this.commands.set(command.name, command))
 		log.debug(`Found commands: ${[ ...this.commands.keys() ].join(", ")}`)
@@ -80,35 +82,17 @@ class Commands implements Service {
 			return builder.toJSON()
 		})
 
+		// REGISTER COMMANDS //
+
 		log.debug(`Registering guild commands for guild ${this.bot.guildId}`)
 
 		const rest = new REST({ version: APIVersion })
 		rest.setToken(this.bot.token)
 
-		const response = await rest.put(
+		await rest.put(
 			Routes.applicationGuildCommands(this.bot.clientId, this.bot.guildId),
 			{ body }
 		) as BasicApplicationCommandData[]
-
-		log.debug("Setting up command permissions")
-
-		await Promise.all(
-			response.map(async (commandData) => {
-				const guildCommand = await this.bot.guild?.commands.fetch(commandData.id)
-
-				if (guildCommand) {
-					const command = this.commands.get(guildCommand.name)
-
-					if (command?.permissions) {
-						log.debug(`Setting permissions for command "${guildCommand.name}"`)
-
-						await guildCommand.permissions.set({
-							permissions: buildPermissions(command.permissions, roles),
-						})
-					}
-				}
-			})
-		)
 	}
 
 	private async onInteraction(interaction: Interaction): Promise<void> {
