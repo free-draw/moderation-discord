@@ -14,14 +14,17 @@ type LoggerQueuedMessage = {
 
 class Logger implements Service {
 	public bot: Bot
-	public subscriber: IORedis.Redis
 
+	private subscriber?: IORedis.Redis
 	private targets: Collection<string, LoggerCategory> = new Collection()
 	private queue: LoggerQueuedMessage[] = []
 
-	constructor(bot: Bot, redisUrl: string) {
+	constructor(bot: Bot) {
 		this.bot = bot
-		this.subscriber = new IORedis(redisUrl)
+	}
+
+	public async connect(redisUrl: string) {
+		const subscriber = this.subscriber = new IORedis(redisUrl)
 
 		this.bot.resolver.on("resolve", async () => {
 			for (const queueItem of this.queue) {
@@ -33,17 +36,21 @@ class Logger implements Service {
 
 		this.loadCategories().then(() => {
 			const events = [ ...this.targets.keys() ]
-			this.subscriber.subscribe(...events)
+			subscriber.subscribe(...events)
 			log.debug(`Subscribed to Redis events: ${events.join(",")}`)
 		})
 
-		this.subscriber.connect(() => {
+		subscriber.connect(() => {
 			log.info("Connected to Redis")
 		})
 
-		this.subscriber.on("message", (eventName: string, data: string) => {
+		subscriber.on("message", (eventName: string, data: string) => {
 			this.log(eventName, JSON.parse(data))
 		})
+	}
+
+	public async disconnect() {
+		if (this.subscriber) this.subscriber.disconnect()
 	}
 
 	private async loadCategories(): Promise<void> {

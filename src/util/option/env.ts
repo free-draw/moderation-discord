@@ -21,7 +21,7 @@ const env = {
 	discordToken: getEnvironmentVariable("DISCORD_TOKEN", true),
 	apiUrl: getEnvironmentVariable("API_URL", true),
 	apiToken: getEnvironmentVariable("API_TOKEN", true),
-	redisUrl: getEnvironmentVariable("REDIS_URL", true),
+	redisUrl: getEnvironmentVariable("REDIS_URL", false),
 } as Environment
 
 export default env

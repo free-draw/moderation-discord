@@ -10,21 +10,21 @@ class Bot extends EventEmitter {
 	public clientId: string
 	public clientSecret: string
 	public guildId: string
-	public redisUrl: string
+	public redisUrl?: string
 
 	public client: Client
 	public guild: Guild | undefined
 
 	public resolver: Resolver
 	public commands: Commands
-	public logger: Logger
+	public logger?: Logger
 
 	constructor(options: {
 		token: string,
 		clientId: string,
 		clientSecret: string,
 		guildId: string,
-		redisUrl: string,
+		redisUrl?: string,
 	}) {
 		super()
 
@@ -40,7 +40,13 @@ class Bot extends EventEmitter {
 
 		this.resolver = new Resolver(this)
 		this.commands = new Commands(this)
-		this.logger = new Logger(this, options.redisUrl)
+		this.logger = new Logger(this)
+
+		if (options.redisUrl) {
+			this.logger.connect(options.redisUrl)
+		} else {
+			log.warn("Redis URL missing; disabling logger")
+		}
 	}
 
 	public async login() {
