@@ -89,6 +89,8 @@ class Commands implements Service {
 		const rest = new REST({ version: APIVersion })
 		rest.setToken(this.bot.token)
 
+		await rest.delete(Routes.applicationCommand(this.bot.clientId, "1149098446498832475"))
+
 		await rest.put(
 			Routes.applicationGuildCommands(this.bot.clientId, this.bot.guildId),
 			{ body }
