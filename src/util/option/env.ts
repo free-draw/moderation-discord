@@ -19,8 +19,6 @@ function getEnvironmentVariable(name: string, required?: boolean): string | unde
 const env = {
 	configFile: getEnvironmentVariable("CONFIG_FILE", false),
 	discordToken: getEnvironmentVariable("DISCORD_TOKEN", true),
-	discordClientId: getEnvironmentVariable("DISCORD_CLIENT_ID", true),
-	discordClientSecret: getEnvironmentVariable("DISCORD_CLIENT_SECRET", true),
 	apiUrl: getEnvironmentVariable("API_URL", true),
 	apiToken: getEnvironmentVariable("API_TOKEN", true),
 	redisUrl: getEnvironmentVariable("REDIS_URL", true),
