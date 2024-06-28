@@ -8,8 +8,10 @@ import ModeratorAccountEmbed from "../../../embed/ModeratorAccount"
 import ReportEmbed from "../../../embed/Report"
 import colors from "../../../util/resource/colors"
 
+type LogMessageGenerator<T extends LogType> = (data: LogTypeData[T], moderator: Moderator) => Promise<MessageCreateOptions>
+
 const messages = {
-	[LogType.CREATE_ACTION]: async (data: LogTypeData[LogType.CREATE_ACTION], moderator: Moderator) => {
+	[LogType.CREATE_ACTION]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** created an action on **${data.user.name}** (${data.user.id})`,
 			embeds: [
@@ -17,7 +19,7 @@ const messages = {
 			],
 		}
 	},
-	[LogType.DELETE_ACTION]: async (data: LogTypeData[LogType.DELETE_ACTION], moderator: Moderator) => {
+	[LogType.DELETE_ACTION]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** deleted an action on **${data.user.name}** (${data.user.id})`,
 			embeds: [
@@ -25,14 +27,14 @@ const messages = {
 			],
 		}
 	},
-	[LogType.DELETE_ACTIONS_BULK]: async (data: LogTypeData[LogType.DELETE_ACTIONS_BULK], moderator: Moderator) => {
+	[LogType.DELETE_ACTIONS_BULK]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** deleted ${data.actions.length} action(s) on **${data.user.name}** (${data.user.id})`,
 			embeds: (await Promise.all(data.actions.map(ActionEmbed))).map(embed => embed.setColor(colors.delete)),
 		}
 	},
 
-	[LogType.CREATE_MODERATOR]: async (data: LogTypeData[LogType.CREATE_MODERATOR], moderator: Moderator) => {
+	[LogType.CREATE_MODERATOR]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** created ${data.moderator.name} (${data.moderator.id})`,
 			embeds: [
@@ -40,7 +42,7 @@ const messages = {
 			],
 		}
 	},
-	[LogType.DELETE_MODERATOR]: async (data: LogTypeData[LogType.DELETE_MODERATOR], moderator: Moderator) => {
+	[LogType.DELETE_MODERATOR]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** deleted ${data.moderator.name} (${data.moderator.id})`,
 			embeds: [
@@ -48,7 +50,7 @@ const messages = {
 			],
 		}
 	},
-	[LogType.UPDATE_MODERATOR]: async (data: LogTypeData[LogType.UPDATE_MODERATOR], moderator: Moderator) => {
+	[LogType.UPDATE_MODERATOR]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** updated ${data.moderator.name} (${data.moderator.id})`,
 			embeds: [
@@ -56,7 +58,7 @@ const messages = {
 			],
 		}
 	},
-	[LogType.LINK_MODERATOR_ACCOUNT]: async (data: LogTypeData[LogType.LINK_MODERATOR_ACCOUNT], moderator: Moderator) => {
+	[LogType.LINK_MODERATOR_ACCOUNT]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** linked a moderator account to **${data.moderator.name}** (${data.moderator.id})`,
 			embeds: [
@@ -64,7 +66,7 @@ const messages = {
 			],
 		}
 	},
-	[LogType.UNLINK_MODERATOR_ACCOUNT]: async (data: LogTypeData[LogType.UNLINK_MODERATOR_ACCOUNT], moderator: Moderator) => {
+	[LogType.UNLINK_MODERATOR_ACCOUNT]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** unlinked a moderator account from **${data.moderator.name}** (${data.moderator.id})`,
 			embeds: [
@@ -72,8 +74,7 @@ const messages = {
 			],
 		}
 	},
-
-	[LogType.ACCEPT_REPORT]: async (data: LogTypeData[LogType.ACCEPT_REPORT], moderator: Moderator) => {
+	[LogType.ACCEPT_REPORT]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** accepted a report on **${data.target.name}** (${data.target.id}) from **${data.from.name}** (${data.from.id})`,
 			embeds: [
@@ -82,7 +83,7 @@ const messages = {
 			],
 		}
 	},
-	[LogType.DECLINE_REPORT]: async (data: LogTypeData[LogType.DECLINE_REPORT], moderator: Moderator) => {
+	[LogType.DECLINE_REPORT]: async (data, moderator) => {
 		return {
 			content: `**${moderator.name}** declined a report on **${data.target.name}** (${data.target.id}) from **${data.from.name}** (${data.from.id})`,
 			embeds: [
@@ -90,7 +91,12 @@ const messages = {
 			],
 		}
 	},
-} as Record<LogType, (data: LogTypeData[LogType], moderator: Moderator) => Promise<MessageCreateOptions>>
+} as { [T in LogType]: LogMessageGenerator<T> }
+
+// TODO: Remove this once Log<T> exists
+function getMessage<T extends LogType>(type: T, data: LogTypeData[T], moderator: Moderator): Promise<MessageCreateOptions> {
+	return messages[type](data, moderator)
+}
 
 export default {
 	channel: "logs",
@@ -103,7 +109,7 @@ export default {
 				log.moderator.resolve(API),
 			])
 
-			return messages[log.type](resolvedData, resolvedModerator)
+			return getMessage(log.type, resolvedData, resolvedModerator)
 		},
 	},
 } as LoggerCategory
