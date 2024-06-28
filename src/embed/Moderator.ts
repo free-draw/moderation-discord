@@ -1,5 +1,5 @@
 import { AccountPlatform, Moderator } from "@free-draw/moderation-client"
-import { MessageEmbed } from "discord.js"
+import { EmbedBuilder } from "discord.js"
 import colors from "../util/resource/colors"
 
 const accountPlatformNames = {
@@ -7,10 +7,10 @@ const accountPlatformNames = {
 	[AccountPlatform.ROBLOX]: "Roblox",
 }
 
-async function ModeratorEmbed(moderator: Moderator): Promise<MessageEmbed> {
-	return new MessageEmbed({
-		title: moderator.name,
-		fields: [
+async function ModeratorEmbed(moderator: Moderator): Promise<EmbedBuilder> {
+	return new EmbedBuilder()
+		.setTitle(moderator.name)
+		.setFields([
 			{
 				name: "Active",
 				value: moderator.active ? "Yes" : "No",
@@ -23,10 +23,9 @@ async function ModeratorEmbed(moderator: Moderator): Promise<MessageEmbed> {
 				name: "Accounts",
 				value: moderator.accounts.map(account => `${accountPlatformNames[account.platform]} - ${account.id}`).join("\n"),
 			},
-		],
-		footer: { text: `ID: ${moderator.id}` },
-		color: colors.brand,
-	})
+		])
+		.setFooter({ text: `ID: ${moderator.id}` })
+		.setColor(colors.brand)
 }
 
 export default ModeratorEmbed

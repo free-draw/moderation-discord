@@ -1,4 +1,8 @@
-require("make-promises-safe")
+// make-promises-safe
+process.on("unhandledRejection", error => {
+	console.error(error)
+	process.abort()
+})
 
 if (process.env.NODE_ENV === "development") {
 	const path = require("path")

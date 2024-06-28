@@ -1,12 +1,12 @@
 import EventEmitter from "events"
 import Bot from "../Bot"
-import { Collection, GuildChannel, Role } from "discord.js"
+import { Collection, GuildBasedChannel, Role } from "discord.js"
 import config from "../util/option/config"
 import log from "../util/log"
 import Service from "../types/interface/Service"
 
 type ResolverRoles = Collection<string, Role>
-type ResolverChannels = Collection<string, GuildChannel>
+type ResolverChannels = Collection<string, GuildBasedChannel>
 
 interface Resolver {
 	on(event: "resolve", listener: (roles: ResolverRoles, channels: ResolverChannels) => void): this,

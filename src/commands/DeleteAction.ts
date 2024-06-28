@@ -1,6 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
 import { deleteAction, getRobloxUsername } from "@free-draw/moderation-client"
-import { CommandInteraction } from "discord.js"
+import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -34,7 +33,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: CommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 		const id = interaction.options.getString("id", true)
 

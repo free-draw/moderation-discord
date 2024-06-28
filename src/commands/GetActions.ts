@@ -1,5 +1,4 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
-import { CommandInteraction, MessageActionRow, MessageButton } from "discord.js"
+import { ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, SlashCommandBuilder, ButtonStyle } from "discord.js"
 import API from "../util/API"
 import { getRobloxUsername, getUser } from "@free-draw/moderation-client"
 import ActionEmbed from "../embed/Action"
@@ -31,7 +30,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: CommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
@@ -49,15 +48,13 @@ export default {
 				content: `Showing **${Math.min(LIMIT, actions.length)}** of **${actions.length}** actions on Roblox user [${robloxUser.name}](${link.roblox.profile(robloxUser.id)})`,
 				embeds: await Promise.all(actions.map(ActionEmbed).slice(0, LIMIT)),
 				components: [
-					new MessageActionRow({
-						components: [
-							new MessageButton({
-								label: "View on Moderation Hub",
-								url: link.moderation.user(robloxUser.id),
-								style: "LINK",
-							}),
-						],
-					})
+					new ActionRowBuilder<ButtonBuilder>()
+						.addComponents(
+							new ButtonBuilder()
+								.setLabel("View on Moderation Hub")
+								.setURL(link.moderation.user(robloxUser.id))
+								.setStyle(ButtonStyle.Link)
+						)
 				],
 			})
 		} else {

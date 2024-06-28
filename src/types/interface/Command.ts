@@ -1,6 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
 import { Snowflake } from "discord-api-types/v10"
-import { CommandInteraction } from "discord.js"
+import { CommandInteraction, SlashCommandBuilder } from "discord.js"
 import Bot from "../../Bot"
 
 type CommandPermissions = {

@@ -1,5 +1,5 @@
-import { TextChannel, Collection, MessageOptions } from "discord.js"
-import IORedis from "ioredis"
+import { TextChannel, Collection, MessageCreateOptions } from "discord.js"
+import Redis from "ioredis"
 import { resolve } from "path"
 import Bot from "../../Bot"
 import Service from "../../types/interface/Service"
@@ -9,13 +9,13 @@ import LoggerCategory from "./LoggerCategory"
 
 type LoggerQueuedMessage = {
 	channelName: string,
-	message: MessageOptions,
+	message: MessageCreateOptions,
 }
 
 class Logger implements Service {
 	public bot: Bot
 
-	private subscriber?: IORedis.Redis
+	private subscriber?: Redis
 	private targets: Collection<string, LoggerCategory> = new Collection()
 	private queue: LoggerQueuedMessage[] = []
 
@@ -24,7 +24,7 @@ class Logger implements Service {
 	}
 
 	public async connect(redisUrl: string) {
-		const subscriber = this.subscriber = new IORedis(redisUrl)
+		const subscriber = this.subscriber = new Redis(redisUrl)
 
 		this.bot.resolver.on("resolve", async () => {
 			for (const queueItem of this.queue) {
@@ -64,7 +64,7 @@ class Logger implements Service {
 		}
 	}
 
-	private async send(channelName: string, message: MessageOptions): Promise<boolean> {
+	private async send(channelName: string, message: MessageCreateOptions): Promise<boolean> {
 		const resolver = this.bot.resolver
 
 		if (resolver.resolved) {

@@ -5,7 +5,7 @@ type Environment = {
 	discordClientSecret: string,
 	apiUrl: string,
 	apiToken: string,
-	redisUrl: string,
+	redisUrl?: string,
 }
 
 function getEnvironmentVariable(name: string, required: true): string | never

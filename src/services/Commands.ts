@@ -1,7 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
-import { REST } from "@discordjs/rest"
-import { APIVersion, Routes, Snowflake } from "discord-api-types/v9"
-import { ApplicationCommandPermissionData, Interaction, Collection, GuildApplicationCommandPermissionData } from "discord.js"
+import { APIVersion, Routes, Snowflake } from "discord-api-types/v10"
+import { Interaction, Collection, ApplicationCommandPermissions, ApplicationCommandPermissionType, SlashCommandBuilder, REST } from "discord.js"
 import { resolve } from "path"
 import Bot from "../Bot"
 import ErrorEmbed from "../embed/Error"
@@ -16,11 +14,11 @@ type BasicApplicationCommandData = {
 	name: string,
 }
 
-function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles): ApplicationCommandPermissionData[] {
+function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles): ApplicationCommandPermissions[] {
 	const rolePermissions = permissions.roles
 	const userPermissions = permissions.users
 
-	const output = [] as ApplicationCommandPermissionData[]
+	const output = [] as ApplicationCommandPermissions[]
 
 	if (rolePermissions) {
 		for (const roleName in rolePermissions) {
@@ -29,7 +27,7 @@ function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles)
 
 			output.push({
 				id: role.id,
-				type: "ROLE",
+				type: ApplicationCommandPermissionType.Role,
 				permission: rolePermissions[roleName],
 			})
 		}
@@ -39,7 +37,7 @@ function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles)
 		for (const user in userPermissions) {
 			output.push({
 				id: user,
-				type: "USER",
+				type: ApplicationCommandPermissionType.User,
 				permission: userPermissions[user],
 			})
 		}
@@ -96,7 +94,7 @@ class Commands implements Service {
 	}
 
 	private async onInteraction(interaction: Interaction): Promise<void> {
-		if (interaction.isCommand()) {
+		if (interaction.isChatInputCommand()) {
 			const name = interaction.commandName
 			const command = this.commands.get(name)
 

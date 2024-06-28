@@ -1,6 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
 import { getRobloxThumbnail, getRobloxUsername, getUser, RobloxThumbnailType } from "@free-draw/moderation-client"
-import { CommandInteraction, MessageEmbed } from "discord.js"
+import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -28,7 +27,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: CommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
@@ -49,21 +48,20 @@ export default {
 
 			await interaction.editReply({
 				embeds: [
-					new MessageEmbed({
-						author: {
+					new EmbedBuilder()
+						.setAuthor({
 							name: `${robloxUser.name} (${robloxUser.id})`,
 							url: `https://www.roblox.com/users/${robloxUser.id}/profile`,
 							iconURL: avatar,
-						},
-						fields: [
+						})
+						.setFields([
 							{
 								name: "Actions",
 								value: `${activeActions} *(+${inactiveActions} inactive)*`,
 							},
-						],
-						color: activeActions > 0 ? colors.userHasActions : colors.userHasNoActions,
-						footer: { text: `Hint: Use /actions ${robloxUser.name} to see their actions` }
-					}),
+						])
+						.setColor(activeActions > 0 ? colors.userHasActions : colors.userHasNoActions)
+						.setFooter({ text: `Hint: Use /actions ${robloxUser.name} to see their actions` })
 				],
 			})
 		} else {

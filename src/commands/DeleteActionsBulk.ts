@@ -1,6 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
 import { ActionType, deleteActionsBulk, getRobloxUsername } from "@free-draw/moderation-client"
-import { CommandInteraction } from "discord.js"
+import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -31,13 +30,15 @@ export default {
 				.setName("type")
 				.setRequired(true)
 				.setDescription("Type of action to delete")
-				.addChoice("Ban", ActionType.BAN)
-				.addChoice("Draw-ban", ActionType.DRAWBAN)
-				.addChoice("Mute", ActionType.MUTE)
+				.addChoices([
+					{ name: "Ban", value: ActionType.BAN },
+					{ name: "Draw-ban", value: ActionType.DRAWBAN },
+					{ name: "Mute", value: ActionType.MUTE },
+				])
 		})
 	},
 
-	async execute(interaction: CommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		const username = interaction.options.getString("username", true)
 		const type = interaction.options.getString("type", true) as ActionType
 

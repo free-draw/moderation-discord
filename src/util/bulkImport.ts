@@ -9,7 +9,7 @@ async function bulkImport<T>(directory: string, useDefault?: boolean): Promise<C
 	for (const file of files) {
 		if (file.toLowerCase().endsWith(".ts")) {
 			const name = file.split(".").slice(0, -1).join(".")
-			const object = await import(resolve(directory, file))
+			const object = require(resolve(directory, file))
 			objects.set(name, useDefault ? object.default : object)
 		}
 	}

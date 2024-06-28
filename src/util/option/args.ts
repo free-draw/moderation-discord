@@ -1,15 +1,10 @@
-import yargs from "yargs"
-import { hideBin } from "yargs/helpers"
+import { program } from "commander"
 
 type Args = {
-	verbose: number,
+	debug: boolean,
 }
 
-const args = yargs(hideBin(process.argv))
-	.option("verbose", {
-		alias: "v",
-		type: "count",
-	})
-	.parse()
+program.option("-d, --debug")
+program.parse()
 
-export default args as Args
+export default program.opts() as Args

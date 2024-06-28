@@ -1,6 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders"
 import { AccountPlatform, findModerator, getModerator, getRobloxUsername, Moderator } from "@free-draw/moderation-client"
-import { CommandInteraction } from "discord.js"
+import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import ModeratorEmbed from "../embed/Moderator"
 import ErrorEmbed from "../embed/Error"
 import Command from "../types/interface/Command"
@@ -36,6 +35,7 @@ export default {
 		builder.addSubcommandGroup((group) => {
 			group.setName("account")
 			group.setDescription("Get by account")
+
 			group.addSubcommand((subcommand) => {
 				subcommand.setName("discord")
 				subcommand.setDescription("Get a moderator by Discord account")
@@ -66,7 +66,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: CommandInteraction): Promise<void> {
+	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
 		await interaction.deferReply({ ephemeral: true })
 
 		let moderator: Moderator | undefined

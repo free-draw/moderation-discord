@@ -1,7 +1,7 @@
-import { getModerator, getRobloxUser, Log, LogData, LogType, LogTypeData, Moderator } from "@free-draw/moderation-client"
+import { Log, LogData, LogType, LogTypeData, Moderator } from "@free-draw/moderation-client"
 import API from "../../../util/API"
 import LoggerCategory from "../LoggerCategory"
-import { MessageOptions, ColorResolvable } from "discord.js"
+import { MessageCreateOptions } from "discord.js"
 import ActionEmbed from "../../../embed/Action"
 import ModeratorEmbed from "../../../embed/Moderator"
 import ModeratorAccountEmbed from "../../../embed/ModeratorAccount"
@@ -90,7 +90,7 @@ const messages = {
 			],
 		}
 	},
-} as Record<LogType, (data: LogTypeData[LogType], moderator: Moderator) => Promise<MessageOptions>>
+} as Record<LogType, (data: LogTypeData[LogType], moderator: Moderator) => Promise<MessageCreateOptions>>
 
 export default {
 	channel: "logs",
