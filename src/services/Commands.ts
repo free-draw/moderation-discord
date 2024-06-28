@@ -3,47 +3,14 @@ import { Interaction, Collection, ApplicationCommandPermissions, ApplicationComm
 import { resolve } from "path"
 import Bot from "../Bot"
 import ErrorEmbed from "../embed/Error"
-import { Command, CommandPermissions } from "../types/interface/Command"
+import Command from "../types/interface/Command"
 import Service from "../types/interface/Service"
 import bulkImport from "../util/bulkImport"
 import log from "../util/log"
-import { ResolverRoles } from "./Resolver"
 
 type BasicApplicationCommandData = {
 	id: Snowflake,
 	name: string,
-}
-
-function buildPermissions(permissions: CommandPermissions, roles: ResolverRoles): ApplicationCommandPermissions[] {
-	const rolePermissions = permissions.roles
-	const userPermissions = permissions.users
-
-	const output = [] as ApplicationCommandPermissions[]
-
-	if (rolePermissions) {
-		for (const roleName in rolePermissions) {
-			const role = roles.get(roleName)
-			if (!role) throw new Error(`Unknown role "${roleName}"`)
-
-			output.push({
-				id: role.id,
-				type: ApplicationCommandPermissionType.Role,
-				permission: rolePermissions[roleName],
-			})
-		}
-	}
-
-	if (userPermissions) {
-		for (const user in userPermissions) {
-			output.push({
-				id: user,
-				type: ApplicationCommandPermissionType.User,
-				permission: userPermissions[user],
-			})
-		}
-	}
-
-	return output
 }
 
 class Commands implements Service {
@@ -57,7 +24,7 @@ class Commands implements Service {
 		bot.client.on("interactionCreate", this.onInteraction.bind(this))
 	}
 
-	private async onResolve(roles: ResolverRoles): Promise<void> {
+	private async onResolve(): Promise<void> {
 		log.debug("Loading commands")
 
 		// BUILD COMMAND DATA //
@@ -73,7 +40,7 @@ class Commands implements Service {
 
 			builder.setName(command.name)
 			builder.setDescription(command.description)
-			if (command.permissions) builder.setDefaultPermission(command.permissions.default)
+			builder.setDefaultMemberPermissions(0)
 
 			command.build(builder)
 

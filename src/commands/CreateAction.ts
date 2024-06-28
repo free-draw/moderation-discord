@@ -11,14 +11,6 @@ import ActionEmbed from "../embed/Action"
 export default {
 	name: "create-action",
 	description: "Creates an action on the specified user",
-	permissions: {
-		default: false,
-		roles: {
-			admin: true,
-			mod: true,
-			trialMod: true,
-		},
-	},
 
 	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {

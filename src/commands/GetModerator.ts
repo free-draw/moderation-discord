@@ -9,14 +9,6 @@ import asDiscord from "../util/asDiscord"
 export default {
 	name: "get-moderator",
 	description: "Get a moderator by ID or account",
-	permissions: {
-		default: false,
-		roles: {
-			admin: true,
-			mod: true,
-			trialMod: true,
-		},
-	},
 
 	build(builder: SlashCommandBuilder): void {
 		builder.addSubcommand((subcommand) => {

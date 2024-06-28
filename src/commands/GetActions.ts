@@ -12,14 +12,6 @@ const LIMIT = 5
 export default {
 	name: "get-actions",
 	description: "Gets latest actions on a user",
-	permissions: {
-		default: false,
-		roles: {
-			admin: true,
-			mod: true,
-			trialMod: true,
-		},
-	},
 
 	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {

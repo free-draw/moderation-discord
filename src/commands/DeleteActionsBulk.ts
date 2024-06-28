@@ -8,14 +8,6 @@ import asDiscord from "../util/asDiscord"
 export default {
 	name: "delete-actions-bulk",
 	description: "Deletes all actions from a user that match specified criteria",
-	permissions: {
-		default: false,
-		roles: {
-			admin: true,
-			mod: true,
-			trialMod: true,
-		},
-	},
 
 	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {

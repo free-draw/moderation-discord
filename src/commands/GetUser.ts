@@ -9,14 +9,6 @@ import colors from "../util/resource/colors"
 export default {
 	name: "get-user",
 	description: "Get a user's information",
-	permissions: {
-		default: false,
-		roles: {
-			admin: true,
-			mod: true,
-			trialMod: true,
-		},
-	},
 
 	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {

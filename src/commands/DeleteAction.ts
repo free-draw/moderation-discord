@@ -8,14 +8,6 @@ import asDiscord from "../util/asDiscord"
 export default {
 	name: "delete-action",
 	description: "Deletes an action on a user",
-	permissions: {
-		default: false,
-		roles: {
-			admin: true,
-			mod: true,
-			trialMod: true,
-		},
-	},
 
 	build(builder: SlashCommandBuilder): void {
 		builder.addStringOption((option) => {
