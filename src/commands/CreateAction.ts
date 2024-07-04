@@ -1,6 +1,5 @@
 
 import { ActionType, createAction, getRobloxUsername } from "@free-draw/moderation-client"
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import ErrorEmbed from "../builders/embed/Error"
 import Command from "../types/interface/Command"
 import ms from "ms"
@@ -12,7 +11,7 @@ export default {
 	name: "create-action",
 	description: "Creates an action on the specified user",
 
-	build(builder: SlashCommandBuilder): void {
+	build(builder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -47,7 +46,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction) {
 		const username = interaction.options.getString("username", true)
 		const type = interaction.options.getString("type", true) as ActionType
 		const reason = interaction.options.getString("reason", true)

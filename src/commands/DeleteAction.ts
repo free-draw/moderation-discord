@@ -1,5 +1,4 @@
 import { deleteAction, getRobloxUsername } from "@free-draw/moderation-client"
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import ErrorEmbed from "../builders/embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -9,7 +8,7 @@ export default {
 	name: "delete-action",
 	description: "Deletes an action on a user",
 
-	build(builder: SlashCommandBuilder): void {
+	build(builder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -25,7 +24,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction) {
 		const username = interaction.options.getString("username", true)
 		const id = interaction.options.getString("id", true)
 

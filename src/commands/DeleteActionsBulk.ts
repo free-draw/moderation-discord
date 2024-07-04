@@ -1,5 +1,4 @@
 import { ActionType, deleteActionsBulk, getRobloxUsername } from "@free-draw/moderation-client"
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
 import ErrorEmbed from "../builders/embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -9,7 +8,7 @@ export default {
 	name: "delete-actions-bulk",
 	description: "Deletes all actions from a user that match specified criteria",
 
-	build(builder: SlashCommandBuilder): void {
+	build(builder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -30,7 +29,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction) {
 		const username = interaction.options.getString("username", true)
 		const type = interaction.options.getString("type", true) as ActionType
 

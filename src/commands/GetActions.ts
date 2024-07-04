@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, SlashCommandBuilder, ButtonStyle } from "discord.js"
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js"
 import API from "../util/API"
 import { getRobloxUsername, getUser } from "@free-draw/moderation-client"
 import ActionEmbed from "../builders/embed/Action"
@@ -13,7 +13,7 @@ export default {
 	name: "get-actions",
 	description: "Gets latest actions on a user",
 
-	build(builder: SlashCommandBuilder): void {
+	build(builder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -22,7 +22,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction) {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })

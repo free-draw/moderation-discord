@@ -1,5 +1,5 @@
 import { getRobloxThumbnail, getRobloxUsername, getUser, RobloxThumbnailType } from "@free-draw/moderation-client"
-import { ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js"
+import { EmbedBuilder } from "discord.js"
 import ErrorEmbed from "../builders/embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
@@ -10,7 +10,7 @@ export default {
 	name: "get-user",
 	description: "Get a user's information",
 
-	build(builder: SlashCommandBuilder): void {
+	build(builder): void {
 		builder.addStringOption((option) => {
 			return option
 				.setName("username")
@@ -19,7 +19,7 @@ export default {
 		})
 	},
 
-	async execute(interaction: ChatInputCommandInteraction): Promise<void> {
+	async execute(interaction) {
 		const username = interaction.options.getString("username", true)
 
 		await interaction.deferReply({ ephemeral: true })
