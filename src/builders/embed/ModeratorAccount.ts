@@ -1,6 +1,6 @@
 import { AccountPlatform, ModeratorAccount } from "@free-draw/moderation-client"
 import { EmbedBuilder } from "discord.js"
-import colors from "../util/resource/colors"
+import colors from "../../util/resource/colors"
 
 const accountPlatformNames = {
 	[AccountPlatform.DISCORD]: "Discord",

@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "discord.js"
 import { Action } from "@free-draw/moderation-client"
-import colors from "../util/resource/colors"
+import colors from "../../util/resource/colors"
 
 async function ActionEmbed(action: Action): Promise<EmbedBuilder> {
 	const fields = [

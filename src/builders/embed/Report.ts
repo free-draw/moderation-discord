@@ -1,7 +1,7 @@
 import { EmbedBuilder } from "discord.js"
-import API from "../util/API"
+import API from "../../util/API"
 import { Report, RobloxThumbnailType, getRobloxThumbnail, getRobloxUser } from "@free-draw/moderation-client"
-import colors from "../util/resource/colors"
+import colors from "../../util/resource/colors"
 
 async function ReportEmbed(report: Report): Promise<EmbedBuilder> {
 	const [ from, target ] = await Promise.all([
