@@ -1,6 +1,6 @@
 import { deleteAction, getRobloxUsername } from "@free-draw/moderation-client"
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
-import ErrorEmbed from "../embed/Error"
+import ErrorEmbed from "../builders/embed/Error"
 import Command from "../types/interface/Command"
 import API from "../util/API"
 import asDiscord from "../util/asDiscord"

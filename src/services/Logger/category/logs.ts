@@ -2,10 +2,10 @@ import { Log, LogData, LogType, LogTypeData, Moderator } from "@free-draw/modera
 import API from "../../../util/API"
 import LoggerCategory from "../LoggerCategory"
 import { MessageCreateOptions } from "discord.js"
-import ActionEmbed from "../../../embed/Action"
-import ModeratorEmbed from "../../../embed/Moderator"
-import ModeratorAccountEmbed from "../../../embed/ModeratorAccount"
-import ReportEmbed from "../../../embed/Report"
+import ActionEmbed from "../../../builders/embed/Action"
+import ModeratorEmbed from "../../../builders/embed/Moderator"
+import ModeratorAccountEmbed from "../../../builders/embed/ModeratorAccount"
+import ReportEmbed from "../../../builders/embed/Report"
 import colors from "../../../util/resource/colors"
 
 type LogMessageGenerator<T extends LogType> = (data: LogTypeData[T], moderator: Moderator) => Promise<MessageCreateOptions>

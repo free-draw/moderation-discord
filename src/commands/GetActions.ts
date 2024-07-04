@@ -1,11 +1,11 @@
 import { ChatInputCommandInteraction, ActionRowBuilder, ButtonBuilder, SlashCommandBuilder, ButtonStyle } from "discord.js"
 import API from "../util/API"
 import { getRobloxUsername, getUser } from "@free-draw/moderation-client"
-import ActionEmbed from "../embed/Action"
+import ActionEmbed from "../builders/embed/Action"
 import Command from "../types/interface/Command"
 import link from "../util/resource/link"
 import asDiscord from "../util/asDiscord"
-import ErrorEmbed from "../embed/Error"
+import ErrorEmbed from "../builders/embed/Error"
 
 const LIMIT = 5
 

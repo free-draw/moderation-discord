@@ -1,6 +1,6 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js"
 import { Report, ReportData } from "@free-draw/moderation-client"
-import ReportEmbed from "../../../embed/Report"
+import ReportEmbed from "../../../builders/embed/Report"
 import link from "../../../util/resource/link"
 import LoggerCategory from "../LoggerCategory"
 

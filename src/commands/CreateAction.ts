@@ -1,12 +1,12 @@
 
 import { ActionType, createAction, getRobloxUsername } from "@free-draw/moderation-client"
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js"
-import ErrorEmbed from "../embed/Error"
+import ErrorEmbed from "../builders/embed/Error"
 import Command from "../types/interface/Command"
 import ms from "ms"
 import asDiscord from "../util/asDiscord"
 import API from "../util/API"
-import ActionEmbed from "../embed/Action"
+import ActionEmbed from "../builders/embed/Action"
 
 export default {
 	name: "create-action",
