@@ -1,6 +1,6 @@
 import { Client, Guild } from "discord.js"
 import log from "./util/log"
-import Commands from "./services/Commands"
+import CommandDispatcher from "./services/CommandDispatcher"
 import Resolver from "./services/Resolver"
 import EventEmitter from "events"
 import Logger from "./services/Logger"
@@ -16,7 +16,7 @@ class Bot extends EventEmitter {
 	public guild: Guild | undefined
 
 	public resolver: Resolver
-	public commands: Commands
+	public commandDispatcher: CommandDispatcher
 	public logger?: Logger
 
 	constructor(options: {
@@ -39,7 +39,7 @@ class Bot extends EventEmitter {
 		})
 
 		this.resolver = new Resolver(this)
-		this.commands = new Commands(this)
+		this.commandDispatcher = new CommandDispatcher(this)
 		this.logger = new Logger(this)
 
 		if (options.redisUrl) {

@@ -1,5 +1,5 @@
 import { APIVersion, Routes, Snowflake } from "discord-api-types/v10"
-import { Interaction, Collection, ApplicationCommandPermissions, ApplicationCommandPermissionType, SlashCommandBuilder, REST } from "discord.js"
+import { Interaction, Collection, SlashCommandBuilder, REST } from "discord.js"
 import { resolve } from "path"
 import Bot from "../Bot"
 import ErrorEmbed from "../builders/embed/Error"
@@ -13,7 +13,7 @@ type BasicApplicationCommandData = {
 	name: string,
 }
 
-class Commands implements Service {
+class CommandDispatcher implements Service {
 	public bot: Bot
 	public commands: Collection<string, Command> = new Collection()
 
@@ -101,4 +101,4 @@ class Commands implements Service {
 	}
 }
 
-export default Commands
+export default CommandDispatcher
